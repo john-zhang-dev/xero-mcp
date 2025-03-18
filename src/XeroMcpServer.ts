@@ -3,9 +3,10 @@ import {
   CallToolRequestSchema,
   ListToolsRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
-import { z } from "zod";
-import { getAccounts } from "./XeroApi/Account.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
+import { ListAccountsTool } from "./Tools/ListAccounts.js";
+import { AuthenticateTool } from "./Tools/Authenticate.js";
+import { XeroClientSession } from "./XeroApiClient.js";
 
 export class XeroMcpServer {
   private server: Server;
@@ -31,36 +32,31 @@ export class XeroMcpServer {
     console.error("Xero MCP server running on stdio");
   }
 
-  setupTools() {
+  private setupTools() {
     this.server.setRequestHandler(ListToolsRequestSchema, async () => {
       return {
-        tools: [
-          {
-            name: "list_accounts",
-            description: "List all accounts",
-            inputSchema: { type: "object", properties: {} },
-            output: { content: [{ type: "text", text: z.string() }] },
-          },
-        ],
+        tools: [AuthenticateTool.requestSchema, ListAccountsTool.requestSchema],
       };
     });
 
     this.server.setRequestHandler(CallToolRequestSchema, async (request) => {
       const { name } = request.params;
       try {
+        if (name === AuthenticateTool.requestSchema.name) {
+          return await AuthenticateTool.requestHandler(request);
+        } else if (!XeroClientSession.isAuthenticated()) {
+          return {
+            content: [
+              {
+                type: "text",
+                text: "You must authenticate with Xero first",
+              },
+            ],
+          };
+        }
         switch (name) {
-          case "list_accounts":
-            const accounts = (await getAccounts()).accounts || [];
-            return {
-              content: [
-                {
-                  type: "text",
-                  text: `${accounts.length} accounts found\n${accounts.map(
-                    (account) => `${account.name} (${account.code})`
-                  )}`,
-                },
-              ],
-            };
+          case ListAccountsTool.requestSchema.name:
+            return await ListAccountsTool.requestHandler(request);
           default:
             throw new Error(`Unknown tool: ${name}`);
         }
