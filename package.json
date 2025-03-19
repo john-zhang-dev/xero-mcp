@@ -4,6 +4,7 @@
   "description": "A Model Context Protocol server allows Clients to interact with Xero",
   "author": "Jianyang Zhang",
   "type": "module",
+  "main": "build/index.js",
   "bin": {
     "xero-mcp": "./build/index.js"
   },
