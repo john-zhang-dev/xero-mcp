@@ -4,15 +4,15 @@ import {
   ListToolsRequestSchema,
 } from "@modelcontextprotocol/sdk/types.js";
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
-import { ListAccountsTool } from "./Tools/ListAccounts.js";
-import { AuthenticateTool } from "./Tools/Authenticate.js";
-import { XeroClientSession } from "./XeroApiClient.js";
+import { McpToolsFactory } from "./Tools/McpToolsFactory.js";
+import { XeroAuthMiddleware } from "./Middlewares/XeroAuthMiddleware.js";
+import { ErrorMiddleware } from "./Middlewares/ErrorMiddleware.js";
 
 export class XeroMcpServer {
-  private server: Server;
+  private mcpServer: Server;
 
   constructor() {
-    this.server = new Server(
+    this.mcpServer = new Server(
       {
         name: "Xero-MCP-Server",
         version: "1.0.0",
@@ -26,50 +26,38 @@ export class XeroMcpServer {
   }
 
   async start(): Promise<void> {
-    this.setupTools();
+    this.configureTools();
     const transport = new StdioServerTransport();
-    await this.server.connect(transport);
+    await this.mcpServer.connect(transport);
     console.error("Xero MCP server running on stdio");
   }
 
-  private setupTools() {
-    this.server.setRequestHandler(ListToolsRequestSchema, async () => {
+  private configureTools() {
+    this.mcpServer.setRequestHandler(ListToolsRequestSchema, async () => {
       return {
-        tools: [AuthenticateTool.requestSchema, ListAccountsTool.requestSchema],
+        tools: McpToolsFactory.getAllTools().map((tool) => tool.requestSchema),
       };
     });
 
-    this.server.setRequestHandler(CallToolRequestSchema, async (request) => {
-      const { name } = request.params;
-      try {
-        if (name === AuthenticateTool.requestSchema.name) {
-          return await AuthenticateTool.requestHandler(request);
-        } else if (!XeroClientSession.isAuthenticated()) {
-          return {
-            content: [
-              {
-                type: "text",
-                text: "You must authenticate with Xero first",
-              },
-            ],
-          };
-        }
-        switch (name) {
-          case ListAccountsTool.requestSchema.name:
-            return await ListAccountsTool.requestHandler(request);
-          default:
-            throw new Error(`Unknown tool: ${name}`);
-        }
-      } catch (error: any) {
-        return {
-          content: [
-            {
-              type: "text",
-              text: `Error: ${error.message}`,
-            },
-          ],
-        };
-      }
+    this.mcpServer.setRequestHandler(CallToolRequestSchema, async (request) => {
+      return await ErrorMiddleware(request, async (request) => {
+        return await XeroAuthMiddleware(request, async (request) => {
+          const { name } = request.params;
+          const mcpTool = McpToolsFactory.findToolByName(name);
+          if (mcpTool) {
+            return await mcpTool.requestHandler(request);
+          } else {
+            return {
+              content: [
+                {
+                  type: "text",
+                  text: `Error: Tool not found: ${name}`,
+                },
+              ],
+            };
+          }
+        });
+      });
     });
   }
 }

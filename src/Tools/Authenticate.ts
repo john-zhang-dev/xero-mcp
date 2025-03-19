@@ -16,6 +16,8 @@ export const AuthenticateTool: IMcpServerTool = {
     const consentUrl = await XeroClientSession.xeroClient.buildConsentUrl();
     const server = http.createServer();
     server.listen(process.env.PORT || 5000);
+    const oauth2Process = await open(consentUrl);
+
     const authTask = new Promise<Result>((resolve, reject) => {
       server.on("request", async (req) => {
         if (req.url && req.url.includes("/callback")) {
@@ -48,12 +50,12 @@ export const AuthenticateTool: IMcpServerTool = {
             });
           } finally {
             server.close();
+            oauth2Process.kill();
           }
         }
       });
     });
 
-    open(consentUrl);
     return authTask;
   },
 };

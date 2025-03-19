@@ -1,20 +1,6 @@
-import { Account } from "xero-node";
 import { XeroClientSession } from "../XeroApiClient.js";
 import { IMcpServerTool } from "./IMcpServerTool.js";
 import { z } from "zod";
-
-function formatAccountsResponse(accounts: Account[]): string {
-  const results = [];
-  results.push(`${accounts.length} accounts found:`);
-  for (const account of accounts) {
-    results.push(
-      `- ${account.name} ${account.code || ""} ${account.status || ""} ${
-        account.description || ""
-      }`
-    );
-  }
-  return results.join("\n");
-}
 
 export const ListAccountsTool: IMcpServerTool = {
   requestSchema: {
@@ -35,7 +21,7 @@ export const ListAccountsTool: IMcpServerTool = {
       content: [
         {
           type: "text",
-          text: formatAccountsResponse(accounts),
+          text: JSON.stringify(accounts),
         },
       ],
     };
