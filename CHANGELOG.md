@@ -1,4 +1,13 @@
-# 1.1.0 (2025-03-19)
+## [1.1.2](https://github.com/john-zhang-dev/xero-mcp/compare/v1.1.0...v1.1.2) (2025-03-19)
+
+
+### Bug Fixes
+
+* npx package ([c3a6f5a](https://github.com/john-zhang-dev/xero-mcp/commit/c3a6f5a60c449e139183ab5cddc7c06389bde2e4))
+
+
+
+# [1.1.0](https://github.com/john-zhang-dev/xero-mcp/compare/957560cb3556f65d1bca1e9437bc67ee32699b18...v1.1.0) (2025-03-19)
 
 
 ### Features
