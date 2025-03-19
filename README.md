@@ -8,16 +8,16 @@ This MCP server allows Clients to interact with [Xero Accounting Software](https
 
 2. Create an OAuth 2.0 app in Xero to get a *CLIENT_ID* and *CLIENT_SECRET*.
 
-* Create a free Xero user account (if you don't have one) 
-* Login to Xero Developer center https://developer.xero.com/app/manage/
-* Click New app
-* Enter a name for your app
-* Select Web app
-* Provide a valid URL (can be anything valid eg. https://www.myapp.com)
-* Enter redirect URI: `http://localhost:5000/callback`
-* Tick to Accept the Terms & Conditions and click Create app
-* On the left-hand side of the screen select Configuration
-* Click Generate a secret
+    * Create a free Xero user account (if you don't have one) 
+    * Login to Xero Developer center https://developer.xero.com/app/manage/
+    * Click New app
+    * Enter a name for your app
+    * Select Web app
+    * Provide a valid URL (can be anything valid eg. https://www.myapp.com)
+    * Enter redirect URI: `http://localhost:5000/callback`
+    * Tick to Accept the Terms & Conditions and click Create app
+    * On the left-hand side of the screen select Configuration
+    * Click Generate a secret
 
 3. Modify `claude_desktop_config.json` file
 
@@ -26,7 +26,7 @@ This MCP server allows Clients to interact with [Xero Accounting Software](https
         "mcpServers": {
             "xero-mcp": {
                 "command": "npx",
-                "args": ["-y", "@john-zhang-dev/xero-mcp"],
+                "args": ["-y", "xero-mcp"],
                 "env": {
                     "XERO_CLIENT_ID": "YOUR_CLIENT_ID",
                     "XERO_CLIENT_SECRET": "YOUR_CLIENT_SECRET",
