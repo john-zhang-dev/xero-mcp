@@ -12,7 +12,8 @@
     "start": "tsx src/index.ts"
   },
   "files": [
-    "build"
+    "build",
+    "README.md"
   ],
   "keywords": [
     "mcp",
