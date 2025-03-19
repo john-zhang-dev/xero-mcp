@@ -1,4 +1,5 @@
 # Xero MCP Server
+[![smithery badge](https://smithery.ai/badge/xero-mcp)](https://smithery.ai/server/xero-mcp)
 
 This MCP server allows Clients to interact with [Xero Accounting Software](https://www.xero.com).
 
