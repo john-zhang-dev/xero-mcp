@@ -9,7 +9,7 @@
   },
   "scripts": {
     "build": "tsc && node -e \"require('fs').chmodSync('build/index.js', '755')\"",
-    "start": "tsx src/index.ts"
+    "start:dev": "tsx src/index.ts"
   },
   "files": [
     "build",
