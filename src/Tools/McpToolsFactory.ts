@@ -1,6 +1,7 @@
 import { ListAccountsTool } from "./Accounts.js";
 import { AuthenticateTool } from "./Authenticate.js";
 import { ListBankTransactionsTool } from "./BankTransactions.js";
+import { ListContactsTool } from "./Contacts.js";
 import { IMcpServerTool } from "./IMcpServerTool.js";
 import { ListOrganisationsTool } from "./Organisations.js";
 
@@ -9,6 +10,7 @@ export const McpToolsFactory = (function () {
     AuthenticateTool,
     ListAccountsTool,
     ListBankTransactionsTool,
+    ListContactsTool,
     ListOrganisationsTool,
     // register new tools here alphabetically
   ];
