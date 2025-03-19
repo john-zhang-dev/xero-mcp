@@ -1,5 +1,5 @@
 # Xero MCP Server
-[![smithery badge](https://smithery.ai/badge/xero-mcp)](https://smithery.ai/server/xero-mcp)
+[![smithery badge](https://smithery.ai/badge/xero-mcp)](https://smithery.ai/server/@john-zhang-dev/xero-mcp)
 
 This MCP server allows Clients to interact with [Xero Accounting Software](https://www.xero.com).
 
@@ -27,7 +27,7 @@ This MCP server allows Clients to interact with [Xero Accounting Software](https
         "mcpServers": {
             "xero-mcp": {
                 "command": "npx",
-                "args": ["-y", "xero-mcp"],
+                "args": ["-y", "xero-mcp@latest"],
                 "env": {
                     "XERO_CLIENT_ID": "YOUR_CLIENT_ID",
                     "XERO_CLIENT_SECRET": "YOUR_CLIENT_SECRET",
@@ -83,7 +83,6 @@ This MCP server allows Clients to interact with [Xero Accounting Software](https
 ## WIP Features
 
 - Tools that allow new transactions to be added to Xero
-- Docker support
 
 If you have additional requirements, please open an issue on this github repository.
 
