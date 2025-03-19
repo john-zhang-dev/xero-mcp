@@ -1,0 +1,37 @@
+# Smithery configuration file: https://smithery.ai/docs/config#smitheryyaml
+
+startCommand:
+  type: stdio
+  configSchema:
+    # JSON Schema defining the configuration options for the MCP.
+    type: object
+    required:
+      - xeroClientId
+      - xeroClientSecret
+      - xeroRedirectUri
+    properties:
+      xeroClientId:
+        type: string
+        description: Your Xero OAuth2 Client ID
+      xeroClientSecret:
+        type: string
+        description: Your Xero OAuth2 Client Secret
+      xeroRedirectUri:
+        type: string
+        description: Your Xero OAuth2 Redirect URI, e.g., http://localhost:5000/callback
+  commandFunction:
+    # A JS function that produces the CLI command based on the given config to start the MCP on stdio.
+    |-
+    (config) => ({
+      command: 'node',
+      args: ['build/index.js'],
+      env: {
+        XERO_CLIENT_ID: config.xeroClientId,
+        XERO_CLIENT_SECRET: config.xeroClientSecret,
+        XERO_REDIRECT_URI: config.xeroRedirectUri
+      }
+    })
+  exampleConfig:
+    xeroClientId: dummy_client_id
+    xeroClientSecret: dummy_client_secret
+    xeroRedirectUri: http://localhost:5000/callback
