@@ -10,12 +10,10 @@ export const ListAccountsTool: IMcpServerTool = {
     output: { content: [{ type: "text", text: z.string() }] },
   },
   requestHandler: async () => {
-    const tenantId = XeroClientSession.activeTenantId();
-    if (!tenantId) {
-      throw new Error("No tenant selected");
-    }
     const response =
-      await XeroClientSession.xeroClient.accountingApi.getAccounts(tenantId);
+      await XeroClientSession.xeroClient.accountingApi.getAccounts(
+        XeroClientSession.activeTenantId()!!
+      );
     const accounts = response.body.accounts || [];
     return {
       content: [

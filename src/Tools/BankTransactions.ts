@@ -1,25 +1,25 @@
 import { z } from "zod";
-import { XeroClientSession } from "../XeroApiClient.js";
 import { IMcpServerTool } from "./IMcpServerTool.js";
+import { XeroClientSession } from "../XeroApiClient.js";
 
-export const ListOrganisationsTool: IMcpServerTool = {
+export const ListBankTransactionsTool: IMcpServerTool = {
   requestSchema: {
-    name: "list_organisations",
-    description: "List all organisations",
+    name: "list_bank_transactions",
+    description: "List all bank transactions",
     inputSchema: { type: "object", properties: {} },
     output: { content: [{ type: "text", text: z.string() }] },
   },
   requestHandler: async () => {
     const response =
-      await XeroClientSession.xeroClient.accountingApi.getOrganisations(
+      await XeroClientSession.xeroClient.accountingApi.getBankTransactions(
         XeroClientSession.activeTenantId()!!
       );
-    const organisations = response.body.organisations || [];
+    const bankTransactions = response.body.bankTransactions || [];
     return {
       content: [
         {
           type: "text",
-          text: JSON.stringify(organisations),
+          text: JSON.stringify(bankTransactions),
         },
       ],
     };
