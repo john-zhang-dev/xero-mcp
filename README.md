@@ -39,6 +39,8 @@ This MCP server allows Clients to interact with [Xero Accounting Software](https
 
 4. Restart Claude Desktop
 
+5. When the Client decides to access a Xero tool for the first time, a Xero login page will pop up to ask your consent. Complete the auth flow and manually close the web page (as the Xero page will not auto close in this version)
+
 ## Tools
 
 - authenticate
