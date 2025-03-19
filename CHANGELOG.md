@@ -1,0 +1,14 @@
+# 1.1.0 (2025-03-19)
+
+
+### Features
+
+* auth and get real data from a tenant ([957560c](https://github.com/john-zhang-dev/xero-mcp/commit/957560cb3556f65d1bca1e9437bc67ee32699b18))
+* list bank transactions tool ([ebe3291](https://github.com/john-zhang-dev/xero-mcp/commit/ebe329165febd54cfc104c54be37230b642856fd))
+* list contacts tool ([7dc6db8](https://github.com/john-zhang-dev/xero-mcp/commit/7dc6db8fb881e7909dbfa27599bc5dd8f658d0db))
+* list organisations tool. ([5ab468a](https://github.com/john-zhang-dev/xero-mcp/commit/5ab468aca244bd74212554ab04c7059d54034bab))
+* list tools for invoices, journals, payments and quotes ([2c927e9](https://github.com/john-zhang-dev/xero-mcp/commit/2c927e93933c8091a12e8f8c8445057bbd254c52))
+* publish v1.0.0 ([307cfb2](https://github.com/john-zhang-dev/xero-mcp/commit/307cfb2681b6918ed288621be3c8c9a6f735261e))
+
+
+
