@@ -5,7 +5,7 @@ import { z } from "zod";
 export const ListAccountsTool: IMcpServerTool = {
   requestSchema: {
     name: "list_accounts",
-    description: "List all accounts",
+    description: "Retrieves the full chart of accounts",
     inputSchema: { type: "object", properties: {} },
     output: { content: [{ type: "text", text: z.string() }] },
   },

@@ -5,7 +5,7 @@ import { z } from "zod";
 export const ListJournalsTool: IMcpServerTool = {
   requestSchema: {
     name: "list_journals",
-    description: "List all journals",
+    description: "Retrieves journals",
     inputSchema: { type: "object", properties: {} },
     output: { content: [{ type: "text", text: z.string() }] },
   },

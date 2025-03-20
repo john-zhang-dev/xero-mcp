@@ -5,7 +5,7 @@ import { z } from "zod";
 export const ListInvoicesTool: IMcpServerTool = {
   requestSchema: {
     name: "list_invoices",
-    description: "List all invoices",
+    description: "Retrieves sales invoices or purchase bills",
     inputSchema: { type: "object", properties: {} },
     output: { content: [{ type: "text", text: z.string() }] },
   },

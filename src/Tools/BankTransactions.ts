@@ -5,7 +5,7 @@ import { XeroClientSession } from "../XeroApiClient.js";
 export const ListBankTransactionsTool: IMcpServerTool = {
   requestSchema: {
     name: "list_bank_transactions",
-    description: "List all bank transactions",
+    description: "Retrieves any spent or received money transactions",
     inputSchema: { type: "object", properties: {} },
     output: { content: [{ type: "text", text: z.string() }] },
   },

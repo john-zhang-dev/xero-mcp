@@ -1,4 +1,6 @@
 # Xero MCP Server
+
+![](https://badge.mcpx.dev?type=server 'MCP Server')
 [![smithery badge](https://smithery.ai/badge/xero-mcp)](https://smithery.ai/server/@john-zhang-dev/xero-mcp)
 
 This MCP server allows Clients to interact with [Xero Accounting Software](https://www.xero.com).
@@ -7,36 +9,36 @@ This MCP server allows Clients to interact with [Xero Accounting Software](https
 
 1. Make sure [node](https://nodejs.org) and [Claude Desktop](https://claude.ai/download) are installed.
 
-2. Create an OAuth 2.0 app in Xero to get a *CLIENT_ID* and *CLIENT_SECRET*.
+2. Create an OAuth 2.0 app in Xero to get a _CLIENT_ID_ and _CLIENT_SECRET_.
 
-    * Create a free Xero user account (if you don't have one) 
-    * Login to Xero Developer center https://developer.xero.com/app/manage/
-    * Click New app
-    * Enter a name for your app
-    * Select Web app
-    * Provide a valid URL (can be anything valid eg. https://www.myapp.com)
-    * Enter redirect URI: `http://localhost:5000/callback`
-    * Tick to Accept the Terms & Conditions and click Create app
-    * On the left-hand side of the screen select Configuration
-    * Click Generate a secret
+   - Create a free Xero user account (if you don't have one)
+   - Login to Xero Developer center https://developer.xero.com/app/manage/
+   - Click New app
+   - Enter a name for your app
+   - Select Web app
+   - Provide a valid URL (can be anything valid eg. https://www.myapp.com)
+   - Enter redirect URI: `http://localhost:5000/callback`
+   - Tick to Accept the Terms & Conditions and click Create app
+   - On the left-hand side of the screen select Configuration
+   - Click Generate a secret
 
 3. Modify `claude_desktop_config.json` file
 
-    ```json
-    {
-        "mcpServers": {
-            "xero-mcp": {
-                "command": "npx",
-                "args": ["-y", "xero-mcp@latest"],
-                "env": {
-                    "XERO_CLIENT_ID": "YOUR_CLIENT_ID",
-                    "XERO_CLIENT_SECRET": "YOUR_CLIENT_SECRET",
-                    "XERO_REDIRECT_URI": "http://localhost:5000/callback"
-                }
-            }
-        }
-    }
-    ```
+   ```json
+   {
+     "mcpServers": {
+       "xero-mcp": {
+         "command": "npx",
+         "args": ["-y", "xero-mcp@latest"],
+         "env": {
+           "XERO_CLIENT_ID": "YOUR_CLIENT_ID",
+           "XERO_CLIENT_SECRET": "YOUR_CLIENT_SECRET",
+           "XERO_REDIRECT_URI": "http://localhost:5000/callback"
+         }
+       }
+     }
+   }
+   ```
 
 4. Restart Claude Desktop
 
@@ -44,41 +46,41 @@ This MCP server allows Clients to interact with [Xero Accounting Software](https
 
 ## Tools
 
-- authenticate
+- `authenticate`
 
-    Authenticate with Xero using OAuth2
+  Authenticate with Xero using OAuth2
 
-- list_accounts
+- `list_accounts`
 
-    List all accounts
+  Retrieves the full chart of accounts
 
-- list_bank_transactions
+- `list_bank_transactions`
 
-    List all bank transactions
+  Retrieves any spent or received money transactions
 
-- list_contacts
+- `list_contacts`
 
-    List all contacts
+  Retrieves all contacts in a Xero organisation
 
-- list_invoices
+- `list_invoices`
 
-    List all invoices
+  Retrieves sales invoices or purchase bills
 
-- list_journals
+- `list_journals`
 
-    List all journals
+  Retrieves journals
 
-- list_organisations
+- `list_organisations`
 
-    List all organisations
+  Retrieves Xero organisation details
 
-- list_payments
+- `list_payments`
 
-    List all payments
+  Retrieves payments for invoices and credit notes
 
-- list_quotes
+- `list_quotes`
 
-    List all quotes
+  Retrieves sales quotes
 
 ## WIP Features
 

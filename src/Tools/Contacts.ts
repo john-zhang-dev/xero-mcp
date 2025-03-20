@@ -5,7 +5,7 @@ import { z } from "zod";
 export const ListContactsTool: IMcpServerTool = {
   requestSchema: {
     name: "list_contacts",
-    description: "List all contacts",
+    description: "Retrieves all contacts in a Xero organisation",
     inputSchema: { type: "object", properties: {} },
     output: { content: [{ type: "text", text: z.string() }] },
   },

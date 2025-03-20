@@ -5,7 +5,7 @@ import { z } from "zod";
 export const ListQuotesTool: IMcpServerTool = {
   requestSchema: {
     name: "list_quotes",
-    description: "List all quotes",
+    description: "Retrieves sales quotes",
     inputSchema: { type: "object", properties: {} },
     output: { content: [{ type: "text", text: z.string() }] },
   },

@@ -5,7 +5,7 @@ import { IMcpServerTool } from "./IMcpServerTool.js";
 export const ListOrganisationsTool: IMcpServerTool = {
   requestSchema: {
     name: "list_organisations",
-    description: "List all organisations",
+    description: "Retrieves Xero organisation details",
     inputSchema: { type: "object", properties: {} },
     output: { content: [{ type: "text", text: z.string() }] },
   },
