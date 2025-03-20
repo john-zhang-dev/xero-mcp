@@ -44,6 +44,8 @@ This MCP server allows Clients to interact with [Xero Accounting Software](https
 
 5. When the Client decides to access a Xero tool for the first time, a Xero login page will pop up to ask your consent. Complete the auth flow and manually close the web page (as the Xero page will not auto close in this version)
 
+   __Privacy alert: after completing the Xero OAuth2 flow, your Xero data may go through the LLM that you use. If you are doing testing you should authorize to your [Xero Demo Company](https://central.xero.com/s/article/Use-the-demo-company).__
+   
 ## Tools
 
 - `authenticate`
