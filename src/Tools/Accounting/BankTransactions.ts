@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { IMcpServerTool } from "./IMcpServerTool.js";
-import { XeroClientSession } from "../XeroApiClient.js";
+import { IMcpServerTool } from "../IMcpServerTool.js";
+import { XeroClientSession } from "../../XeroApiClient.js";
 
 export const ListBankTransactionsTool: IMcpServerTool = {
   requestSchema: {

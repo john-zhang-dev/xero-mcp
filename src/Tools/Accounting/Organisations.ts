@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { XeroClientSession } from "../XeroApiClient.js";
-import { IMcpServerTool } from "./IMcpServerTool.js";
+import { XeroClientSession } from "../../XeroApiClient.js";
+import { IMcpServerTool } from "../IMcpServerTool.js";
 
 export const ListOrganisationsTool: IMcpServerTool = {
   requestSchema: {
