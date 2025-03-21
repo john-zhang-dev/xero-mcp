@@ -1,5 +1,5 @@
-import { XeroClientSession } from "../XeroApiClient.js";
-import { IMcpServerTool } from "./IMcpServerTool.js";
+import { XeroClientSession } from "../../XeroApiClient.js";
+import { IMcpServerTool } from "../IMcpServerTool.js";
 import { z } from "zod";
 
 export const ListQuotesTool: IMcpServerTool = {

@@ -1,6 +1,6 @@
 # Xero MCP Server
 
-![](https://badge.mcpx.dev?type=server 'MCP Server')
+![](https://badge.mcpx.dev?type=server "MCP Server")
 [![smithery badge](https://smithery.ai/badge/xero-mcp)](https://smithery.ai/server/@john-zhang-dev/xero-mcp)
 
 This MCP server allows Clients to interact with [Xero Accounting Software](https://www.xero.com).
@@ -44,13 +44,17 @@ This MCP server allows Clients to interact with [Xero Accounting Software](https
 
 5. When the Client decides to access a Xero tool for the first time, a Xero login page will pop up to ask your consent. Complete the auth flow and manually close the web page (as the Xero page will not auto close in this version)
 
-   __Privacy alert: after completing the Xero OAuth2 flow, your Xero data may go through the LLM that you use. If you are doing testing you should authorize to your [Xero Demo Company](https://central.xero.com/s/article/Use-the-demo-company).__
-   
+   **Privacy alert: after completing the Xero OAuth2 flow, your Xero data may go through the LLM that you use. If you are doing testing you should authorize to your [Xero Demo Company](https://central.xero.com/s/article/Use-the-demo-company).**
+
 ## Tools
 
 - `authenticate`
 
   Authenticate with Xero using OAuth2
+
+- `get_balance_sheet`
+
+  Retrieves report for balancesheet
 
 - `list_accounts`
 
@@ -83,6 +87,16 @@ This MCP server allows Clients to interact with [Xero Accounting Software](https
 - `list_quotes`
 
   Retrieves sales quotes
+
+## Examples
+
+- "Visualize my financial position over the last month"
+
+    <img src="https://github.com/john-zhang-dev/assets/blob/main/xero-mcp/demo1.jpg?raw=true" width=50% height=50%>
+
+- "Track my spendings over last week"
+
+    <img src="https://github.com/john-zhang-dev/assets/blob/main/xero-mcp/demo2.jpg?raw=true" width=50% height=50%>
 
 ## WIP Features
 
