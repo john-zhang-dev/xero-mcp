@@ -1,3 +1,12 @@
+# [1.2.0](https://github.com/john-zhang-dev/xero-mcp/compare/v1.1.2...v1.2.0) (2025-03-21)
+
+
+### Features
+
+* support reading balance sheet ([#4](https://github.com/john-zhang-dev/xero-mcp/issues/4)) ([a7f7d19](https://github.com/john-zhang-dev/xero-mcp/commit/a7f7d190a823e4ea7a9695f7bc2e011098f7d522))
+
+
+
 ## [1.1.2](https://github.com/john-zhang-dev/xero-mcp/compare/v1.1.0...v1.1.2) (2025-03-19)
 
 
