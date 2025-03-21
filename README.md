@@ -88,6 +88,16 @@ This MCP server allows Clients to interact with [Xero Accounting Software](https
 
   Retrieves sales quotes
 
+## Examples
+
+- "Visualize my financial position over the last month"
+
+    <img src="https://github.com/john-zhang-dev/assets/blob/main/xero-mcp/demo1.jpg?raw=true" width=50% height=50%>
+
+- "Track my spendings over last week"
+
+    <img src="https://github.com/john-zhang-dev/assets/blob/main/xero-mcp/demo2.jpg?raw=true" width=50% height=50%>
+
 ## WIP Features
 
 - Tools that allow new transactions to be added to Xero
