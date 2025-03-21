@@ -1,3 +1,12 @@
+## [1.2.1](https://github.com/john-zhang-dev/xero-mcp/compare/v1.2.0...v1.2.1) (2025-03-21)
+
+
+### Performance Improvements
+
+* support query filters for transacations, invoices and payments ([#5](https://github.com/john-zhang-dev/xero-mcp/issues/5)) ([b4981e4](https://github.com/john-zhang-dev/xero-mcp/commit/b4981e4a12672e2bca8aa824f0561ab7427a892c))
+
+
+
 # [1.2.0](https://github.com/john-zhang-dev/xero-mcp/compare/v1.1.2...v1.2.0) (2025-03-21)
 
 
