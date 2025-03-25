@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { IMcpServerTool } from "../IMcpServerTool.js";
 import { XeroClientSession } from "../../XeroApiClient.js";
-import { XeroAccountingApiSchema } from "../../Schemas/xero_accounting.js";
+import { XeroAccountingApiSchema } from "../../Resources/xero_accounting.js";
 import { parseArrayValues } from "../Utils/parseArrayValues.js";
 import { convertToCamelCase } from "../Utils/convertToCamelCase.js";
 import { BankTransactions } from "xero-node";
@@ -63,18 +63,13 @@ export const CreateBankTransactionsTool: IMcpServerTool = {
     output: { content: [{ type: "text", text: z.string() }] },
   },
   requestHandler: async (request) => {
-    console.error("handling request to create bank transactions");
     const rawInputData = request.params.arguments;
-    console.error("raw input data: ", rawInputData);
     const parsedData = parseArrayValues(rawInputData);
-    const bankTransactions: BankTransactions = sanitizeObject(
-      convertToCamelCase(parsedData)
-    );
-    console.error("request bank transactions object: ", bankTransactions);
+    const bankTransactions: BankTransactions = convertToCamelCase(parsedData);
     const response =
       await XeroClientSession.xeroClient.accountingApi.createBankTransactions(
         XeroClientSession.activeTenantId()!!,
-        bankTransactions
+        sanitizeObject(bankTransactions)
       );
     return { content: [{ type: "text", text: JSON.stringify(response.body) }] };
   },

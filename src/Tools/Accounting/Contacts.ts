@@ -2,7 +2,7 @@ import { XeroClientSession } from "../../XeroApiClient.js";
 import { IMcpServerTool } from "../IMcpServerTool.js";
 import { z } from "zod";
 import { Contacts } from "xero-node";
-import { XeroAccountingApiSchema } from "../../Schemas/xero_accounting.js";
+import { XeroAccountingApiSchema } from "../../Resources/xero_accounting.js";
 import { parseArrayValues } from "../Utils/parseArrayValues.js";
 import { convertToCamelCase } from "../Utils/convertToCamelCase.js";
 import { sanitizeObject } from "../Utils/sanitizeValues.js";
@@ -46,16 +46,13 @@ export const CreateContactsTool: IMcpServerTool = {
     output: { content: [{ type: "text", text: z.string() }] },
   },
   requestHandler: async (request) => {
-    console.error("handling request to create contacts");
     const rawInputData = request.params.arguments;
-    console.error("raw input data: ", rawInputData);
     const parsedData = parseArrayValues(rawInputData);
-    const contacts: Contacts = sanitizeObject(convertToCamelCase(parsedData));
-    console.error("request contacts object: ", contacts);
+    const contacts: Contacts = convertToCamelCase(parsedData);
     const response =
       await XeroClientSession.xeroClient.accountingApi.createContacts(
         XeroClientSession.activeTenantId()!!,
-        contacts
+        sanitizeObject(contacts)
       );
     return { content: [{ type: "text", text: JSON.stringify(response.body) }] };
   },
