@@ -1,7 +1,7 @@
 # Xero MCP Server
 
 ![](https://badge.mcpx.dev?type=server "MCP Server")
-[![smithery badge](https://smithery.ai/badge/xero-mcp)](https://smithery.ai/server/@john-zhang-dev/xero-mcp)
+[![smithery badge](https://smithery.ai/badge/@john-zhang-dev/xero-mcp)](https://smithery.ai/server/@john-zhang-dev/xero-mcp)
 
 This MCP server allows Clients to interact with [Xero Accounting Software](https://www.xero.com).
 
@@ -107,10 +107,6 @@ This MCP server allows Clients to interact with [Xero Accounting Software](https
     <img src="https://github.com/john-zhang-dev/assets/blob/main/xero-mcp/demo2.jpg?raw=true" width=50% height=50%>
 
 - "Add all transactions from the monthly statement into my revenue account (account code 201) as receive money"
-
-## New Features
-
-If you have additional requirements, please open an issue on this github repository.
 
 ## License
 
