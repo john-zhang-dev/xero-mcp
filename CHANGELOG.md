@@ -1,3 +1,12 @@
+# [1.3.0](https://github.com/john-zhang-dev/xero-mcp/compare/v1.2.1...v1.3.0) (2025-03-25)
+
+
+### Features
+
+* support creating bank transactions and contacts ([#6](https://github.com/john-zhang-dev/xero-mcp/issues/6)) ([43d9460](https://github.com/john-zhang-dev/xero-mcp/commit/43d9460b734d223a24ef0b82fd309dc2cfa032d2))
+
+
+
 ## [1.2.1](https://github.com/john-zhang-dev/xero-mcp/compare/v1.2.0...v1.2.1) (2025-03-21)
 
 
