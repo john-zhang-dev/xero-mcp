@@ -8,7 +8,7 @@ export const ErrorMiddleware: IRequestMiddleware = async (request, next) => {
       content: [
         {
           type: "text",
-          text: `Unexpected error occurred: ${error.message}`,
+          text: `Unexpected error occurred: ${error}`,
         },
       ],
     };

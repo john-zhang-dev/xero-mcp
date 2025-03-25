@@ -1,6 +1,11 @@
 import { XeroClientSession } from "../../XeroApiClient.js";
 import { IMcpServerTool } from "../IMcpServerTool.js";
 import { z } from "zod";
+import { Contacts } from "xero-node";
+import { XeroAccountingApiSchema } from "../../Resources/xero_accounting.js";
+import { parseArrayValues } from "../Utils/parseArrayValues.js";
+import { convertToCamelCase } from "../Utils/convertToCamelCase.js";
+import { sanitizeObject } from "../Utils/sanitizeValues.js";
 
 export const ListContactsTool: IMcpServerTool = {
   requestSchema: {
@@ -23,5 +28,32 @@ export const ListContactsTool: IMcpServerTool = {
         },
       ],
     };
+  },
+};
+
+export const CreateContactsTool: IMcpServerTool = {
+  requestSchema: {
+    name: "create_contacts",
+    description:
+      "Creates one or multiple contacts in a Xero organisation. Only use this tool when user has directly and explicitly ask you to create contact.",
+    inputSchema: {
+      type: "object",
+      description: "Contacts with an array of Contact objects to create",
+      properties:
+        XeroAccountingApiSchema.components.schemas.Contacts.properties,
+      example: '{ contacts: [{ name: "John Doe" }]}',
+    },
+    output: { content: [{ type: "text", text: z.string() }] },
+  },
+  requestHandler: async (request) => {
+    const rawInputData = request.params.arguments;
+    const parsedData = parseArrayValues(rawInputData);
+    const contacts: Contacts = convertToCamelCase(parsedData);
+    const response =
+      await XeroClientSession.xeroClient.accountingApi.createContacts(
+        XeroClientSession.activeTenantId()!!,
+        sanitizeObject(contacts)
+      );
+    return { content: [{ type: "text", text: JSON.stringify(response.body) }] };
   },
 };
