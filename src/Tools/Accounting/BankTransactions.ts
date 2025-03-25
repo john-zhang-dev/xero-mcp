@@ -5,6 +5,7 @@ import { XeroAccountingApiSchema } from "../../Schemas/xero_accounting.js";
 import { parseArrayValues } from "../Utils/parseArrayValues.js";
 import { convertToCamelCase } from "../Utils/convertToCamelCase.js";
 import { BankTransactions } from "xero-node";
+import { sanitizeObject } from "../Utils/sanitizeValues.js";
 
 export const ListBankTransactionsTool: IMcpServerTool = {
   requestSchema: {
@@ -53,10 +54,11 @@ export const CreateBankTransactionsTool: IMcpServerTool = {
     inputSchema: {
       type: "object",
       description:
-        "Transactions with an array of BankTransaction objects to create. All property values must be sanitized",
+        "Transactions with an array of BankTransaction objects to create",
       properties:
         XeroAccountingApiSchema.components.schemas.BankTransactions.properties,
-      example: '{ bankTransactions: [{ type: "SPEND", date: "2023-01-01", reference: "INV-001", subTotal: "100", total: "115", totalTax: "15", lineItems: [{ accountCode: "401", description: "taxi fare", lineAmount: "115" }], contact: { contactId: "00000000-0000-0000-0000-000000000000", name: "John Doe" }, "bankAccount": { "accountID": "6f7594f2-f059-4d56-9e67-47ac9733bfe9", "Code": "088", "Name": "Business Wells Fargo" } }]}',
+      example:
+        '{ bankTransactions: [{ type: "SPEND", date: "2023-01-01", reference: "INV-001", subTotal: "100", total: "115", totalTax: "15", lineItems: [{ accountCode: "401", description: "taxi fare", lineAmount: "115" }], contact: { contactId: "00000000-0000-0000-0000-000000000000", name: "John Doe" }, "bankAccount": { "accountID": "6f7594f2-f059-4d56-9e67-47ac9733bfe9", "Code": "088", "Name": "Business Wells Fargo" } }]}',
     },
     output: { content: [{ type: "text", text: z.string() }] },
   },
@@ -65,12 +67,15 @@ export const CreateBankTransactionsTool: IMcpServerTool = {
     const rawInputData = request.params.arguments;
     console.error("raw input data: ", rawInputData);
     const parsedData = parseArrayValues(rawInputData);
-    const bankTransactions: BankTransactions = convertToCamelCase(parsedData);
-    console.error("request bank transactions object: ", bankTransactions);
-    const response = await XeroClientSession.xeroClient.accountingApi.createBankTransactions(
-      XeroClientSession.activeTenantId()!!,
-      bankTransactions
+    const bankTransactions: BankTransactions = sanitizeObject(
+      convertToCamelCase(parsedData)
     );
+    console.error("request bank transactions object: ", bankTransactions);
+    const response =
+      await XeroClientSession.xeroClient.accountingApi.createBankTransactions(
+        XeroClientSession.activeTenantId()!!,
+        bankTransactions
+      );
     return { content: [{ type: "text", text: JSON.stringify(response.body) }] };
   },
 };

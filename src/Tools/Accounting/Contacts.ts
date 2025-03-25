@@ -5,6 +5,7 @@ import { Contacts } from "xero-node";
 import { XeroAccountingApiSchema } from "../../Schemas/xero_accounting.js";
 import { parseArrayValues } from "../Utils/parseArrayValues.js";
 import { convertToCamelCase } from "../Utils/convertToCamelCase.js";
+import { sanitizeObject } from "../Utils/sanitizeValues.js";
 
 export const ListContactsTool: IMcpServerTool = {
   requestSchema: {
@@ -37,8 +38,7 @@ export const CreateContactsTool: IMcpServerTool = {
       "Creates one or multiple contacts in a Xero organisation. Only use this tool when user has directly and explicitly ask you to create contact.",
     inputSchema: {
       type: "object",
-      description:
-        "Contacts with an array of Contact objects to create. All property values must be sanitized",
+      description: "Contacts with an array of Contact objects to create",
       properties:
         XeroAccountingApiSchema.components.schemas.Contacts.properties,
       example: '{ contacts: [{ name: "John Doe" }]}',
@@ -50,12 +50,13 @@ export const CreateContactsTool: IMcpServerTool = {
     const rawInputData = request.params.arguments;
     console.error("raw input data: ", rawInputData);
     const parsedData = parseArrayValues(rawInputData);
-    const contacts: Contacts = convertToCamelCase(parsedData);
+    const contacts: Contacts = sanitizeObject(convertToCamelCase(parsedData));
     console.error("request contacts object: ", contacts);
-    const response = await XeroClientSession.xeroClient.accountingApi.createContacts(
-      XeroClientSession.activeTenantId()!!,
-      contacts
-    );
+    const response =
+      await XeroClientSession.xeroClient.accountingApi.createContacts(
+        XeroClientSession.activeTenantId()!!,
+        contacts
+      );
     return { content: [{ type: "text", text: JSON.stringify(response.body) }] };
   },
 };
