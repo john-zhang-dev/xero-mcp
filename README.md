@@ -52,6 +52,14 @@ This MCP server allows Clients to interact with [Xero Accounting Software](https
 
   Authenticate with Xero using OAuth2
 
+- `create_bank_transactions`
+
+  Creates one or more spent or received money transaction
+
+- `create_contacts`
+
+  Creates one or multiple contacts in a Xero organisation
+
 - `get_balance_sheet`
 
   Retrieves report for balancesheet
@@ -98,9 +106,9 @@ This MCP server allows Clients to interact with [Xero Accounting Software](https
 
     <img src="https://github.com/john-zhang-dev/assets/blob/main/xero-mcp/demo2.jpg?raw=true" width=50% height=50%>
 
-## WIP Features
+- "Add all transactions from the monthly statement into my revenue account (account code 201) as receive money"
 
-- Tools that allow new transactions to be added to Xero
+## New Features
 
 If you have additional requirements, please open an issue on this github repository.
 
