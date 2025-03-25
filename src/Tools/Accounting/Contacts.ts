@@ -38,7 +38,7 @@ export const CreateContactsTool: IMcpServerTool = {
     inputSchema: {
       type: "object",
       description:
-        "Contacts with an array of Contact objects to create. All property names must start with lower case letter, all property values must be sanitized",
+        "Contacts with an array of Contact objects to create. All property values must be sanitized",
       properties:
         XeroAccountingApiSchema.components.schemas.Contacts.properties,
       example: '{ contacts: [{ name: "John Doe" }]}',
@@ -52,10 +52,10 @@ export const CreateContactsTool: IMcpServerTool = {
     const parsedData = parseArrayValues(rawInputData);
     const contacts: Contacts = convertToCamelCase(parsedData);
     console.error("request contacts object: ", contacts);
-    await XeroClientSession.xeroClient.accountingApi.createContacts(
+    const response = await XeroClientSession.xeroClient.accountingApi.createContacts(
       XeroClientSession.activeTenantId()!!,
       contacts
     );
-    return { content: [{ type: "text", text: "Contact(s) created" }] };
+    return { content: [{ type: "text", text: JSON.stringify(response.body) }] };
   },
 };
