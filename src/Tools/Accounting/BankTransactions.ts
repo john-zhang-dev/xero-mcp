@@ -2,10 +2,10 @@ import { z } from "zod";
 import { IMcpServerTool } from "../IMcpServerTool.js";
 import { XeroClientSession } from "../../XeroApiClient.js";
 import { XeroAccountingApiSchema } from "../../Resources/xero_accounting.js";
-import { parseArrayValues } from "../Utils/parseArrayValues.js";
-import { convertToCamelCase } from "../Utils/convertToCamelCase.js";
+import { parseArrayValues } from "../../Utils/parseArrayValues.js";
+import { convertToCamelCase } from "../../Utils/convertToCamelCase.js";
 import { BankTransactions } from "xero-node";
-import { sanitizeObject } from "../Utils/sanitizeValues.js";
+import { sanitizeObject } from "../../Utils/sanitizeValues.js";
 
 export const ListBankTransactionsTool: IMcpServerTool = {
   requestSchema: {
