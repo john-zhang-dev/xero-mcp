@@ -3,25 +3,39 @@
  * 1. Removing javascript protocol
  * 2. Removing HTML tags
  * 3. Escaping special characters
- * 4. Trimming whitespace
+ * 4. Preventing SQL injections
+ * 5. Trimming whitespace
  */
 export function sanitizeValue(value: string): string {
-  return value
-    // Remove javascript protocol
-    .replace(/javascript:/gi, '')
-    // Remove HTML tags
-    .replace(/<[^>]*>/g, '')
-    // Escape special characters (excluding quotes)
-    .replace(/[&<>]/g, char => {
-      const escapeMap: { [key: string]: string } = {
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;'
-      };
-      return escapeMap[char];
-    })
-    // Trim whitespace
-    .trim();
+  if (typeof value !== 'string') {
+    return value;
+  }
+  
+  let result = value;
+  
+  // Remove javascript protocol
+  result = result.replace(/javascript:/gi, '');
+  
+  // Remove HTML tags
+  result = result.replace(/<[^>]*>/g, '');
+  
+  // Escape HTML special characters
+  result = result.replace(/[&<>]/g, char => {
+    const escapeMap: { [key: string]: string } = {
+      '&': '&amp;',
+      '<': '&lt;',
+      '>': '&gt;'
+    };
+    return escapeMap[char];
+  });
+  
+  // Prevent SQL injection - escape single quotes
+  result = result.replace(/(['"])/g, match => {
+    return match === "'" ? "''" : match;
+  });
+  
+  // Trim whitespace
+  return result.trim();
 }
 
 /**
