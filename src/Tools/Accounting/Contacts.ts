@@ -3,9 +3,9 @@ import { IMcpServerTool } from "../IMcpServerTool.js";
 import { z } from "zod";
 import { Contacts } from "xero-node";
 import { XeroAccountingApiSchema } from "../../Resources/xero_accounting.js";
-import { parseArrayValues } from "../Utils/parseArrayValues.js";
-import { convertToCamelCase } from "../Utils/convertToCamelCase.js";
-import { sanitizeObject } from "../Utils/sanitizeValues.js";
+import { parseArrayValues } from "../../Utils/parseArrayValues.js";
+import { convertToCamelCase } from "../../Utils/convertToCamelCase.js";
+import { sanitizeObject } from "../../Utils/sanitizeValues.js";
 
 export const ListContactsTool: IMcpServerTool = {
   requestSchema: {
