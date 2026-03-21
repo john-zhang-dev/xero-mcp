@@ -7,7 +7,11 @@ import {
 } from "./Accounting/BankTransactions.js";
 import { CreateContactsTool, ListContactsTool } from "./Accounting/Contacts.js";
 import { IMcpServerTool } from "./IMcpServerTool.js";
-import { ListInvoicesTool } from "./Accounting/Invoices.js";
+import {
+  GetInvoiceTool,
+  ListInvoicesTool,
+  UpdateInvoiceTool,
+} from "./Accounting/Invoices.js";
 import { ListJournalsTool } from "./Accounting/Journals.js";
 import { ListOrganisationsTool } from "./Accounting/Organisations.js";
 import { ListPaymentsTool } from "./Accounting/Payments.js";
@@ -21,6 +25,7 @@ export const McpToolsFactory = (function () {
     CreateContactsTool,
     GetBalanceSheetTool,
     GetBankTransactionTool,
+    GetInvoiceTool,
     ListAccountsTool,
     ListBankTransactionsTool,
     ListContactsTool,
@@ -29,6 +34,7 @@ export const McpToolsFactory = (function () {
     ListOrganisationsTool,
     ListPaymentsTool,
     ListQuotesTool,
+    UpdateInvoiceTool,
     // register new tools here alphabetically
   ];
 
