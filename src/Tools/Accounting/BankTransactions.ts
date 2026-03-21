@@ -117,3 +117,78 @@ export const CreateBankTransactionsTool: IMcpServerTool = {
     return { content: [{ type: "text", text: JSON.stringify(response.body) }] };
   },
 };
+
+export const UpdateBankTransactionTool: IMcpServerTool = {
+  requestSchema: {
+    name: "update_bank_transaction",
+    description:
+      "Updates an existing spent or received money transaction by its Xero bank transaction ID",
+    inputSchema: {
+      type: "object",
+      properties: {
+        bankTransactionID: {
+          type: "string",
+          description:
+            "Xero generated unique identifier for the bank transaction (UUID)",
+        },
+        bankTransactions: {
+          type: "object",
+          description:
+            "BankTransactions payload containing an array of bank transaction objects",
+          properties:
+            XeroAccountingApiSchema.components.schemas.BankTransactions.properties,
+          example:
+            '{ bankTransactions: [{ type: "SPEND", date: "2026-01-01", reference: "Expense Update", subTotal: 100, total: 115, totalTax: 15, lineItems: [{ accountCode: "401", description: "Taxi fare", lineAmount: 115 }], contact: { contactID: "00000000-0000-0000-0000-000000000000" }, bankAccount: { accountID: "6f7594f2-f059-4d56-9e67-47ac9733bfe9" }, status: "AUTHORISED" }]}',
+        },
+        unitdp: {
+          type: "number",
+          description:
+            "Optional. Unit decimal places (e.g. 4) for unit amounts on line items",
+        },
+        idempotencyKey: {
+          type: "string",
+          description:
+            "Optional idempotency key. Allows safe retries without duplicating processing",
+        },
+      },
+      required: ["bankTransactionID", "bankTransactions"],
+    },
+    output: { content: [{ type: "text", text: z.string() }] },
+  },
+  requestHandler: async (request) => {
+    const rawInputData = request.params.arguments;
+    const parsedData = parseArrayValues(rawInputData);
+
+    const bankTransactionID = parsedData?.bankTransactionID as string | undefined;
+    const unitdp = parsedData?.unitdp as number | undefined;
+    const idempotencyKey = parsedData?.idempotencyKey as string | undefined;
+
+    const rawBankTransactionsPayload = parsedData?.bankTransactions;
+    const bankTransactionsPayload: BankTransactions = sanitizeObject(
+      convertToCamelCase(rawBankTransactionsPayload)
+    );
+
+    if (!bankTransactionID) {
+      // Should be prevented by request schema, but keep a hard guard.
+      throw new Error("Missing required parameter: bankTransactionID");
+    }
+
+    const response =
+      await XeroClientSession.xeroClient.accountingApi.updateBankTransaction(
+        XeroClientSession.activeTenantId()!!,
+        bankTransactionID,
+        bankTransactionsPayload,
+        unitdp,
+        idempotencyKey
+      );
+
+    return {
+      content: [
+        {
+          type: "text",
+          text: JSON.stringify(response.body ?? response.response?.status),
+        },
+      ],
+    };
+  },
+};
