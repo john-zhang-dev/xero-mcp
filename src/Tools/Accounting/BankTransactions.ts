@@ -7,6 +7,49 @@ import { convertToCamelCase } from "../../Utils/convertToCamelCase.js";
 import { BankTransactions } from "xero-node";
 import { sanitizeObject } from "../../Utils/sanitizeValues.js";
 
+export const GetBankTransactionTool: IMcpServerTool = {
+  requestSchema: {
+    name: "get_bank_transaction",
+    description:
+      "Retrieves a single spent or received money transaction by its Xero bank transaction ID",
+    inputSchema: {
+      type: "object",
+      properties: {
+        bankTransactionID: {
+          type: "string",
+          description: "Xero-generated unique identifier for the bank transaction (UUID)",
+        },
+        unitdp: {
+          type: "number",
+          description:
+            "Optional. Unit decimal places (e.g. 4) for unit amounts on line items",
+        },
+      },
+      required: ["bankTransactionID"],
+    },
+    output: { content: [{ type: "text", text: z.string() }] },
+  },
+  requestHandler: async (request) => {
+    const bankTransactionID = request.params.arguments
+      ?.bankTransactionID as string;
+    const unitdp = request.params.arguments?.unitdp as number | undefined;
+    const response =
+      await XeroClientSession.xeroClient.accountingApi.getBankTransaction(
+        XeroClientSession.activeTenantId()!!,
+        bankTransactionID,
+        unitdp
+      );
+    return {
+      content: [
+        {
+          type: "text",
+          text: JSON.stringify(response.body.bankTransactions ?? []),
+        },
+      ],
+    };
+  },
+};
+
 export const ListBankTransactionsTool: IMcpServerTool = {
   requestSchema: {
     name: "list_bank_transactions",
