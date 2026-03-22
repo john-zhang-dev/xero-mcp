@@ -1,0 +1,64 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - main
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+
+      - name: Set up Node.js
+        uses: linz/action-setup-node@623b1541d0e2f665d5378ad2e475e3c7335ba944 # v1.0.0
+        with:
+          node-version: "24"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Unit Tests
+        run: npm run test
+
+      - name: Build
+        run: npm run build
+
+      - name: Start Server
+        env:
+          XERO_CLIENT_ID: test
+          XERO_CLIENT_SECRET: test
+          XERO_REDIRECT_URI: localhost:5000/callback
+        run: |
+          set -euo pipefail
+          node build/index.js 2>server-start.log &
+          PID=$!
+          READY=0
+          for _ in $(seq 1 50); do
+            if grep -q "Xero MCP server running on stdio" server-start.log 2>/dev/null; then
+              READY=1
+              break
+            fi
+            if ! kill -0 "$PID" 2>/dev/null; then
+              echo "Server process exited before startup completed."
+              cat server-start.log
+              exit 1
+            fi
+            sleep 0.1
+          done
+          kill "$PID" 2>/dev/null || true
+          wait "$PID" 2>/dev/null || true
+          if [ "$READY" -ne 1 ]; then
+            echo "Timed out waiting for server startup."
+            cat server-start.log
+            exit 1
+          fi
+          echo "Server started successfully."
