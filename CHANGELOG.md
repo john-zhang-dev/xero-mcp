@@ -16,6 +16,13 @@
 
 
 
+## [1.4.1](https://github.com/john-zhang-dev/xero-mcp/compare/xero-mcp-v1.4.0...xero-mcp-v1.4.1) (2026-03-22)
+
+
+### Bug Fixes
+
+* package-lock.json ([92f1293](https://github.com/john-zhang-dev/xero-mcp/commit/92f1293180b65a25a42864560846cdc14fa4d626))
+
 ## [1.4.0](https://github.com/john-zhang-dev/xero-mcp/compare/xero-mcp-v1.3.0...xero-mcp-v1.4.0) (2026-03-22)
 
 
