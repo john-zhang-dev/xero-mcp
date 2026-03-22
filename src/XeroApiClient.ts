@@ -5,7 +5,7 @@ const client_id = process.env.XERO_CLIENT_ID;
 const client_secret = process.env.XERO_CLIENT_SECRET;
 const redirectUrl = process.env.XERO_REDIRECT_URI;
 const scopes =
-  "offline_access openid profile accounting.transactions.read accounting.contacts.read accounting.reports.read";
+  "offline_access openid profile accounting.settings accounting.contacts accounting.invoices accounting.banktransactions accounting.payments.read accounting.reports.balancesheet.read";
 
 if (!client_id || !client_secret || !redirectUrl) {
   throw Error(
