@@ -88,10 +88,6 @@ This MCP server allows Clients to interact with [Xero Accounting Software](https
 
   Retrieves sales invoices or purchase bills
 
-- `list_journals`
-
-  Retrieves journals
-
 - `list_organisations`
 
   Retrieves Xero organisation details
