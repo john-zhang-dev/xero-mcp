@@ -64,6 +64,14 @@ This MCP server allows Clients to interact with [Xero Accounting Software](https
 
   Retrieves report for balancesheet
 
+- `get_bank_transaction`
+
+  Retrieves a single spent or received money transaction by its Xero bank transaction ID
+
+- `get_invoice`
+
+  Retrieves a single sales invoice or purchase bill by its Xero invoice ID
+
 - `list_accounts`
 
   Retrieves the full chart of accounts
@@ -95,6 +103,14 @@ This MCP server allows Clients to interact with [Xero Accounting Software](https
 - `list_quotes`
 
   Retrieves sales quotes
+
+- `update_bank_transaction`
+
+  Updates an existing spent or received money transaction (e.g. line items, contact, bank account) by bank transaction ID
+
+- `update_invoice`
+
+  Updates an existing sales invoice or purchase bill (typically a draft), including line items and account codes
 
 ## Examples
 
