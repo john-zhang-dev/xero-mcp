@@ -19,7 +19,7 @@ jobs:
         uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
 
       - name: Set up Node.js
-        uses: linz/action-setup-node@623b1541d0e2f665d5378ad2e475e3c7335ba944 # v1.0.0
+        uses: actions/setup-node@@53b83947a5a98c8d113130e565377fae1a50d02f # v6.3.0
         with:
           node-version: "24"
 
