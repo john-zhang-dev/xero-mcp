@@ -1,0 +1,11 @@
+{
+    "$schema": "https://raw.githubusercontent.com/googleapis/release-please/main/schemas/config.json",
+    "bootstrap-sha": "3459e3704d7ebdbe455fc0480bc23d59f20eb214",
+    "packages": {
+      ".": {
+        "release-type": "node",
+        "package-name": "xero-mcp",
+        "include-v-in-tag": true
+      }
+    }
+  }
