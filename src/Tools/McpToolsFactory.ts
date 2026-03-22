@@ -1,9 +1,18 @@
 import { ListAccountsTool } from "./Accounting/Accounts.js";
 import { AuthenticateTool } from "./Authenticate.js";
-import { CreateBankTransactionsTool, ListBankTransactionsTool } from "./Accounting/BankTransactions.js";
+import {
+  CreateBankTransactionsTool,
+  GetBankTransactionTool,
+  ListBankTransactionsTool,
+  UpdateBankTransactionTool,
+} from "./Accounting/BankTransactions.js";
 import { CreateContactsTool, ListContactsTool } from "./Accounting/Contacts.js";
 import { IMcpServerTool } from "./IMcpServerTool.js";
-import { ListInvoicesTool } from "./Accounting/Invoices.js";
+import {
+  GetInvoiceTool,
+  ListInvoicesTool,
+  UpdateInvoiceTool,
+} from "./Accounting/Invoices.js";
 import { ListJournalsTool } from "./Accounting/Journals.js";
 import { ListOrganisationsTool } from "./Accounting/Organisations.js";
 import { ListPaymentsTool } from "./Accounting/Payments.js";
@@ -16,6 +25,8 @@ export const McpToolsFactory = (function () {
     CreateBankTransactionsTool,
     CreateContactsTool,
     GetBalanceSheetTool,
+    GetBankTransactionTool,
+    GetInvoiceTool,
     ListAccountsTool,
     ListBankTransactionsTool,
     ListContactsTool,
@@ -24,6 +35,8 @@ export const McpToolsFactory = (function () {
     ListOrganisationsTool,
     ListPaymentsTool,
     ListQuotesTool,
+    UpdateBankTransactionTool,
+    UpdateInvoiceTool,
     // register new tools here alphabetically
   ];
 
