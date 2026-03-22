@@ -19,6 +19,11 @@ export const ListInvoicesTool: IMcpServerTool = {
           example:
             "Date >= DateTime(2015, 01, 01) && Date < DateTime(2015, 12, 31), DueDate < DateTime(2015, 12, 31)",
         },
+        searchTerm: {
+          type: "string",
+          description:
+            "Search parameter that performs a case-insensitive text search across InvoiceNumber, Reference, ContactName",
+        },
       },
     },
     output: { content: [{ type: "text", text: z.string() }] },
@@ -27,11 +32,26 @@ export const ListInvoicesTool: IMcpServerTool = {
     const whereClause = request.params.arguments
       ? (request.params.arguments.where as string)
       : undefined;
+    const searchTerm = request.params.arguments?.searchTerm as
+      | string
+      | undefined;
     const response =
       await XeroClientSession.xeroClient.accountingApi.getInvoices(
         XeroClientSession.activeTenantId()!!,
-        undefined,
-        whereClause
+        undefined, // ifModifiedSince
+        whereClause,
+        undefined, // order
+        undefined, // iDs
+        undefined, // invoiceNumbers
+        undefined, // contactIDs
+        undefined, // statuses
+        undefined, // page
+        undefined, // includeArchived
+        undefined, // createdByMyApp
+        undefined, // unitdp
+        undefined, // summaryOnly
+        undefined, // pageSize
+        searchTerm
       );
     const invoices = response.body.invoices || [];
     return {

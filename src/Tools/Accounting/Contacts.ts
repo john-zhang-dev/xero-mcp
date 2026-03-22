@@ -11,13 +11,33 @@ export const ListContactsTool: IMcpServerTool = {
   requestSchema: {
     name: "list_contacts",
     description: "Retrieves all contacts in a Xero organisation",
-    inputSchema: { type: "object", properties: {} },
+    inputSchema: {
+      type: "object",
+      properties: {
+        searchTerm: {
+          type: "string",
+          description:
+            "Search parameter that performs a case-insensitive text search across the Name, FirstName, LastName, ContactNumber and EmailAddress fields",
+        },
+      },
+    },
     output: { content: [{ type: "text", text: z.string() }] },
   },
-  requestHandler: async () => {
+  requestHandler: async (request) => {
+    const searchTerm = request.params.arguments?.searchTerm as
+      | string
+      | undefined;
     const response =
       await XeroClientSession.xeroClient.accountingApi.getContacts(
-        XeroClientSession.activeTenantId()!!
+        XeroClientSession.activeTenantId()!!,
+        undefined, // ifModifiedSince
+        undefined, // where
+        undefined, // order
+        undefined, // iDs
+        undefined, // page
+        undefined, // includeArchived
+        undefined, // summaryOnly
+        searchTerm
       );
     const contacts = response.body.contacts || [];
     return {

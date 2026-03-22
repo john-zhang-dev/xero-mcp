@@ -22,6 +22,8 @@ This MCP server allows Clients to interact with [Xero Accounting Software](https
    - On the left-hand side of the screen select Configuration
    - Click Generate a secret
 
+   > **Note for apps created after March 2, 2026:** Xero now requires granular OAuth scopes. The server automatically requests the correct scopes (`accounting.settings`, `accounting.contacts`, `accounting.invoices`, `accounting.banktransactions`, `accounting.payments.read`, `accounting.journals.read`, `accounting.reports.balancesheet.read`) when authenticating.
+
 3. Modify `claude_desktop_config.json` file
 
    ```json
@@ -82,11 +84,11 @@ This MCP server allows Clients to interact with [Xero Accounting Software](https
 
 - `list_contacts`
 
-  Retrieves all contacts in a Xero organisation
+  Retrieves all contacts in a Xero organisation. Supports optional `searchTerm` parameter to filter contacts by Name, FirstName, LastName, ContactNumber, or EmailAddress.
 
 - `list_invoices`
 
-  Retrieves sales invoices or purchase bills
+  Retrieves sales invoices or purchase bills. Supports optional `where` filter and `searchTerm` parameter to search across InvoiceNumber, Reference, and ContactName.
 
 - `list_journals`
 
