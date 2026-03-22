@@ -22,7 +22,9 @@ This MCP server allows Clients to interact with [Xero Accounting Software](https
    - On the left-hand side of the screen select Configuration
    - Click Generate a secret
 
-3. Modify `claude_desktop_config.json` file
+3. Modify `claude_desktop_config.json` file:
+
+   Go to Settings -> Developers -> Local MCP Servers -> Edit Config
 
    ```json
    {
@@ -40,7 +42,9 @@ This MCP server allows Clients to interact with [Xero Accounting Software](https
    }
    ```
 
-4. Restart Claude Desktop
+4. Restart Claude Desktop, or from Claude Desktop Menu:
+
+  Developer -> Reload MCP Configuration
 
 5. When the Client decides to access a Xero tool for the first time, a Xero login page will pop up to ask your consent. Complete the auth flow and manually close the web page (as the Xero page will not auto close in this version)
 
