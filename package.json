@@ -1,6 +1,6 @@
 {
   "name": "xero-mcp",
-  "version": "1.4.1",
+  "version": "2.0.0-beta",
   "description": "A Model Context Protocol server allows Clients to interact with Xero",
   "author": "Jianyang Zhang",
   "type": "module",
