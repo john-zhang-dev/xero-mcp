@@ -16,6 +16,13 @@
 
 
 
+## [1.5.0](https://github.com/john-zhang-dev/xero-mcp/compare/xero-mcp-v1.4.1...xero-mcp-v1.5.0) (2026-03-23)
+
+
+### Features
+
+* add where, order and page filters to list tools. ([#29](https://github.com/john-zhang-dev/xero-mcp/issues/29)) ([7057b16](https://github.com/john-zhang-dev/xero-mcp/commit/7057b1637f48b0ca24e82fd8e867e94d1a0652be))
+
 ## [1.4.1](https://github.com/john-zhang-dev/xero-mcp/compare/xero-mcp-v1.4.0...xero-mcp-v1.4.1) (2026-03-22)
 
 
