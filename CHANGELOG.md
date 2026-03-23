@@ -16,6 +16,13 @@
 
 
 
+## [1.5.1](https://github.com/john-zhang-dev/xero-mcp/compare/xero-mcp-v1.5.0...xero-mcp-v1.5.1) (2026-03-23)
+
+
+### Bug Fixes
+
+* **deps:** bump form-data from 4.0.2 to 4.0.5 ([#31](https://github.com/john-zhang-dev/xero-mcp/issues/31)) ([87b528a](https://github.com/john-zhang-dev/xero-mcp/commit/87b528a702e42cd63b4e0b50916471a744b636ae))
+
 ## [1.5.0](https://github.com/john-zhang-dev/xero-mcp/compare/xero-mcp-v1.4.1...xero-mcp-v1.5.0) (2026-03-23)
 
 
