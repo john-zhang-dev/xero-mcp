@@ -59,23 +59,35 @@ export const ListBankTransactionsTool: IMcpServerTool = {
       properties: {
         where: {
           type: "string",
-          description: "Filter bank transactions. See example",
-          example:
-            "Date >= DateTime(2015, 01, 01) && Date < DateTime(2015, 12, 31)",
+          description: "Filter bank transactions by any element",
+          example: 'Status=="AUTHORISED"',
+        },
+        order: {
+          type: "string",
+          description: "Order by any element",
+          example: "Type ASC",
+        },
+        page: {
+          type: "integer",
+          description:
+            "Up to 100 bank transactions will be returned in a single API call with line items details",
+          example: 1,
         },
       },
     },
     output: { content: [{ type: "text", text: z.string() }] },
   },
   requestHandler: async (request) => {
-    const whereClause = request.params.arguments
-      ? (request.params.arguments.where as string)
-      : undefined;
+    const where = request.params.arguments?.where as string | undefined;
+    const order = request.params.arguments?.order as string | undefined;
+    const page = request.params.arguments?.page as number | undefined;
     const response =
       await XeroClientSession.xeroClient.accountingApi.getBankTransactions(
         XeroClientSession.activeTenantId()!!,
         undefined,
-        whereClause
+        where,
+        order,
+        page
       );
     const bankTransactions = response.body.bankTransactions || [];
     return {
