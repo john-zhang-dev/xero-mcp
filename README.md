@@ -40,6 +40,11 @@ This MCP server allows Clients to interact with [Xero Accounting Software](https
    }
    ```
 
+> **ℹ️ Info:**
+>
+> Xero is making changes to its [accounting api scopes](https://developer.xero.com/faq/granular-scopes). 
+> For Apps created after 2nd March 2026, please use `xero-mcp@beta` instead of `xero-mcp@latest`. These 2 tags will consolidate by the end of April, when Xero finishes the api scope migration for old Apps.
+
 4. Restart Claude Desktop
 
 5. When the Client decides to access a Xero tool for the first time, a Xero login page will pop up to ask your consent. Complete the auth flow and manually close the web page (as the Xero page will not auto close in this version)
