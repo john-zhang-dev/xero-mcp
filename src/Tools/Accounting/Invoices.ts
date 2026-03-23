@@ -15,23 +15,76 @@ export const ListInvoicesTool: IMcpServerTool = {
       properties: {
         where: {
           type: "string",
-          description: "Filter invoices. See example",
-          example:
-            "Date >= DateTime(2015, 01, 01) && Date < DateTime(2015, 12, 31), DueDate < DateTime(2015, 12, 31)",
+          description: "Filter invoices by any element",
+          example: 'Status=="DRAFT"',
+        },
+        order: {
+          type: "string",
+          description: "Order by any element",
+          example: "InvoiceNumber ASC",
+        },
+        contactIDs: {
+          type: "array",
+          items: { type: "string" },
+          description: "Filter by a comma-separated list of ContactIDs",
+          example: ["00000000-0000-0000-0000-000000000000"],
+        },
+        invoiceNumbers: {
+          type: "array",
+          items: { type: "string" },
+          description: "Filter by a comma-separated list of InvoiceNumbers",
+          example: ["INV-001", "INV-002"],
+        },
+        statuses: {
+          type: "array",
+          items: { type: "string" },
+          description:
+            "Filter by a comma-separated list of Statuses (DRAFT, SUBMITTED, AUTHORISED, PAID, VOIDED)",
+          example: ["DRAFT", "SUBMITTED"],
+        },
+        page: {
+          type: "integer",
+          description:
+            "Up to 100 invoices will be returned per page with line items shown",
+          example: 1,
+        },
+        includeArchived: {
+          type: "boolean",
+          description: "Include invoices with a status of ARCHIVED",
+          example: true,
         },
       },
     },
     output: { content: [{ type: "text", text: z.string() }] },
   },
   requestHandler: async (request) => {
-    const whereClause = request.params.arguments
-      ? (request.params.arguments.where as string)
-      : undefined;
+    const where = request.params.arguments?.where as string | undefined;
+    const order = request.params.arguments?.order as string | undefined;
+    const contactIDs = request.params.arguments?.contactIDs as
+      | string[]
+      | undefined;
+    const invoiceNumbers = request.params.arguments?.invoiceNumbers as
+      | string[]
+      | undefined;
+    const statuses = request.params.arguments?.statuses as
+      | string[]
+      | undefined;
+    const page = request.params.arguments?.page as number | undefined;
+    const includeArchived = request.params.arguments?.includeArchived as
+      | boolean
+      | undefined;
     const response =
       await XeroClientSession.xeroClient.accountingApi.getInvoices(
         XeroClientSession.activeTenantId()!!,
         undefined,
-        whereClause
+        where,
+        order,
+        undefined,
+        invoiceNumbers,
+        contactIDs,
+        statuses,
+        page,
+        includeArchived
       );
     const invoices = response.body.invoices || [];
     return {
