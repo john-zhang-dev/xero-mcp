@@ -33,7 +33,7 @@
     "dotenv": "^16.4.7",
     "open": "^11.0.0",
     "xero-node": "^10.0.0",
-    "zod": "^3.24.2"
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@types/jest": "^29.5.14",
