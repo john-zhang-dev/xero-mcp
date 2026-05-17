@@ -1,6 +1,5 @@
 import { XeroClientSession } from "../../XeroApiClient.js";
 import { IMcpServerTool } from "../IMcpServerTool.js";
-import { z } from "zod";
 
 export const ListQuotesTool: IMcpServerTool = {
   requestSchema: {
@@ -59,7 +58,6 @@ export const ListQuotesTool: IMcpServerTool = {
         },
       },
     },
-    output: { content: [{ type: "text", text: z.string() }] },
   },
   requestHandler: async (request) => {
     const dateFrom = request.params.arguments?.dateFrom as string | undefined;

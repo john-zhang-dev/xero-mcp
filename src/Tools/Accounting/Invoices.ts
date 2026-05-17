@@ -1,6 +1,5 @@
 import { XeroClientSession } from "../../XeroApiClient.js";
 import { IMcpServerTool } from "../IMcpServerTool.js";
-import { z } from "zod";
 import { XeroAccountingApiSchema } from "../../Resources/xero_accounting.js";
 import { parseArrayValues } from "../../Utils/parseArrayValues.js";
 import { convertToCamelCase } from "../../Utils/convertToCamelCase.js";
@@ -55,7 +54,6 @@ export const ListInvoicesTool: IMcpServerTool = {
         },
       },
     },
-    output: { content: [{ type: "text", text: z.string() }] },
   },
   requestHandler: async (request) => {
     const where = request.params.arguments?.where as string | undefined;
@@ -118,7 +116,6 @@ export const GetInvoiceTool: IMcpServerTool = {
       },
       required: ["invoiceID"],
     },
-    output: { content: [{ type: "text", text: z.string() }] },
   },
   requestHandler: async (request) => {
     const invoiceID = request.params.arguments?.invoiceID as string;
@@ -174,7 +171,6 @@ export const UpdateInvoiceTool: IMcpServerTool = {
       },
       required: ["invoiceID", "invoices"],
     },
-    output: { content: [{ type: "text", text: z.string() }] },
   },
   requestHandler: async (request) => {
     const rawInputData = request.params.arguments;

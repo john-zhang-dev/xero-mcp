@@ -1,6 +1,5 @@
 import { XeroClientSession } from "../../XeroApiClient.js";
 import { IMcpServerTool } from "../IMcpServerTool.js";
-import { z } from "zod";
 import { Contacts } from "xero-node";
 import { XeroAccountingApiSchema } from "../../Resources/xero_accounting.js";
 import { parseArrayValues } from "../../Utils/parseArrayValues.js";
@@ -43,7 +42,6 @@ export const ListContactsTool: IMcpServerTool = {
         },
       },
     },
-    output: { content: [{ type: "text", text: z.string() }] },
   },
   requestHandler: async (request) => {
     const where = request.params.arguments?.where as string | undefined;
@@ -91,7 +89,6 @@ export const CreateContactsTool: IMcpServerTool = {
         XeroAccountingApiSchema.components.schemas.Contacts.properties,
       example: '{ contacts: [{ name: "John Doe" }]}',
     },
-    output: { content: [{ type: "text", text: z.string() }] },
   },
   requestHandler: async (request) => {
     const rawInputData = request.params.arguments;
