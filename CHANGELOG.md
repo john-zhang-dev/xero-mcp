@@ -16,6 +16,13 @@
 
 
 
+## [2.0.4](https://github.com/john-zhang-dev/xero-mcp/compare/xero-mcp-v2.0.3...xero-mcp-v2.0.4) (2026-05-17)
+
+
+### Bug Fixes
+
+* **deps:** bump hono from 4.12.10 to 4.12.19 ([#53](https://github.com/john-zhang-dev/xero-mcp/issues/53)) ([bc0e5af](https://github.com/john-zhang-dev/xero-mcp/commit/bc0e5af8ad8a17bc9a304f01dca535b3860f32dd))
+
 ## [2.0.3](https://github.com/john-zhang-dev/xero-mcp/compare/xero-mcp-v2.0.2...xero-mcp-v2.0.3) (2026-05-17)
 
 
