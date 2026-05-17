@@ -16,6 +16,14 @@
 
 
 
+## [2.0.3](https://github.com/john-zhang-dev/xero-mcp/compare/xero-mcp-v2.0.2...xero-mcp-v2.0.3) (2026-05-17)
+
+
+### Bug Fixes
+
+* **deps:** bump fast-uri from 3.1.0 to 3.1.2 ([#50](https://github.com/john-zhang-dev/xero-mcp/issues/50)) ([67ca4e3](https://github.com/john-zhang-dev/xero-mcp/commit/67ca4e37654599af3e27581bd5fd0b38cc51a2c2))
+* **deps:** bump minimatch from 3.1.2 to 3.1.5 ([#51](https://github.com/john-zhang-dev/xero-mcp/issues/51)) ([b368fa9](https://github.com/john-zhang-dev/xero-mcp/commit/b368fa97ea49d28a081fb600390a005d84e104fb))
+
 ## [2.0.2](https://github.com/john-zhang-dev/xero-mcp/compare/xero-mcp-v2.0.1...xero-mcp-v2.0.2) (2026-05-17)
 
 
