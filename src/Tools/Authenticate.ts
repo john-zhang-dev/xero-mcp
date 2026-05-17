@@ -1,16 +1,14 @@
 import { XeroClientSession } from "../XeroApiClient.js";
 import { IMcpServerTool } from "./IMcpServerTool.js";
-import { z } from "zod";
 import http from "http";
 import open from "open";
-import { Result } from "@modelcontextprotocol/sdk/types.js";
+import { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
 
 export const AuthenticateTool: IMcpServerTool = {
   requestSchema: {
     name: "authenticate",
     description: "Authenticate with Xero using OAuth2",
     inputSchema: { type: "object", properties: {} },
-    output: { content: [{ type: "text", text: z.string() }] },
   },
   requestHandler: async () => {
     const consentUrl = await XeroClientSession.xeroClient.buildConsentUrl();
@@ -18,7 +16,7 @@ export const AuthenticateTool: IMcpServerTool = {
     server.listen(process.env.PORT || 5000);
     const oauth2Process = await open(consentUrl);
 
-    const authTask = new Promise<Result>((resolve, reject) => {
+    const authTask = new Promise<CallToolResult>((resolve, reject) => {
       server.on("request", async (req) => {
         if (req.url && req.url.includes("/callback")) {
           try {
