@@ -16,6 +16,13 @@
 
 
 
+## [2.0.2](https://github.com/john-zhang-dev/xero-mcp/compare/xero-mcp-v2.0.1...xero-mcp-v2.0.2) (2026-05-17)
+
+
+### Bug Fixes
+
+* **deps:** bump axios from 1.8.3 to 1.16.1 ([#43](https://github.com/john-zhang-dev/xero-mcp/issues/43)) ([11f93c6](https://github.com/john-zhang-dev/xero-mcp/commit/11f93c6ebdaa62a6cf760cc5cf0614f35ab05a68))
+
 ## [2.0.1](https://github.com/john-zhang-dev/xero-mcp/compare/xero-mcp-v2.0.0...xero-mcp-v2.0.1) (2026-05-17)
 
 
