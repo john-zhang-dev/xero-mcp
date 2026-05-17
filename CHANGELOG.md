@@ -16,6 +16,13 @@
 
 
 
+## [2.0.1](https://github.com/john-zhang-dev/xero-mcp/compare/xero-mcp-v2.0.0...xero-mcp-v2.0.1) (2026-05-17)
+
+
+### Bug Fixes
+
+* **deps:** bump @modelcontextprotocol/sdk from 1.7.0 to 1.29.0 ([#40](https://github.com/john-zhang-dev/xero-mcp/issues/40)) ([65de281](https://github.com/john-zhang-dev/xero-mcp/commit/65de281ab7731c2768b5a9d094df47c355849367))
+
 ## [2.0.0](https://github.com/john-zhang-dev/xero-mcp/compare/xero-mcp-v1.5.2...xero-mcp-v2.0.0) (2026-05-17)
 
 
