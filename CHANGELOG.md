@@ -16,6 +16,24 @@
 
 
 
+## [2.0.0](https://github.com/john-zhang-dev/xero-mcp/compare/xero-mcp-v1.5.2...xero-mcp-v2.0.0) (2026-05-17)
+
+
+### ⚠ BREAKING CHANGES
+
+* update Xero api client to use granualr scopes ([#24](https://github.com/john-zhang-dev/xero-mcp/issues/24))
+
+### Features
+
+* update Xero api client to use granualr scopes ([#24](https://github.com/john-zhang-dev/xero-mcp/issues/24)) ([e5de6be](https://github.com/john-zhang-dev/xero-mcp/commit/e5de6bec796174b57f54c2154443adaced30ea7b))
+
+## [1.5.2](https://github.com/john-zhang-dev/xero-mcp/compare/xero-mcp-v1.5.1...xero-mcp-v1.5.2) (2026-04-03)
+
+
+### Bug Fixes
+
+* **deps-dev:** bump handlebars from 4.7.8 to 4.7.9 ([#41](https://github.com/john-zhang-dev/xero-mcp/issues/41)) ([5932010](https://github.com/john-zhang-dev/xero-mcp/commit/5932010b48242ecc1f652ae278f8b8cde63d78b1))
+
 ## [1.5.1](https://github.com/john-zhang-dev/xero-mcp/compare/xero-mcp-v1.5.0...xero-mcp-v1.5.1) (2026-03-23)
 
 
