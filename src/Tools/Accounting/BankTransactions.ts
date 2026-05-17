@@ -1,4 +1,3 @@
-import { z } from "zod";
 import { IMcpServerTool } from "../IMcpServerTool.js";
 import { XeroClientSession } from "../../XeroApiClient.js";
 import { XeroAccountingApiSchema } from "../../Resources/xero_accounting.js";
@@ -27,7 +26,6 @@ export const GetBankTransactionTool: IMcpServerTool = {
       },
       required: ["bankTransactionID"],
     },
-    output: { content: [{ type: "text", text: z.string() }] },
   },
   requestHandler: async (request) => {
     const bankTransactionID = request.params.arguments
@@ -75,7 +73,6 @@ export const ListBankTransactionsTool: IMcpServerTool = {
         },
       },
     },
-    output: { content: [{ type: "text", text: z.string() }] },
   },
   requestHandler: async (request) => {
     const where = request.params.arguments?.where as string | undefined;
@@ -115,7 +112,6 @@ export const CreateBankTransactionsTool: IMcpServerTool = {
       example:
         '{ bankTransactions: [{ type: "SPEND", date: "2023-01-01", reference: "INV-001", subTotal: "100", total: "115", totalTax: "15", lineItems: [{ accountCode: "401", description: "taxi fare", lineAmount: "115" }], contact: { contactId: "00000000-0000-0000-0000-000000000000", name: "John Doe" }, "bankAccount": { "accountID": "6f7594f2-f059-4d56-9e67-47ac9733bfe9", "Code": "088", "Name": "Business Wells Fargo" } }]}',
     },
-    output: { content: [{ type: "text", text: z.string() }] },
   },
   requestHandler: async (request) => {
     const rawInputData = request.params.arguments;
@@ -165,7 +161,6 @@ export const UpdateBankTransactionTool: IMcpServerTool = {
       },
       required: ["bankTransactionID", "bankTransactions"],
     },
-    output: { content: [{ type: "text", text: z.string() }] },
   },
   requestHandler: async (request) => {
     const rawInputData = request.params.arguments;

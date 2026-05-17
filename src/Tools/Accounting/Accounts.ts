@@ -1,6 +1,5 @@
 import { XeroClientSession } from "../../XeroApiClient.js";
 import { IMcpServerTool } from "../IMcpServerTool.js";
-import { z } from "zod";
 
 export const ListAccountsTool: IMcpServerTool = {
   requestSchema: {
@@ -21,7 +20,6 @@ export const ListAccountsTool: IMcpServerTool = {
         },
       },
     },
-    output: { content: [{ type: "text", text: z.string() }] },
   },
   requestHandler: async (request) => {
     const where = request.params.arguments?.where as string | undefined;
