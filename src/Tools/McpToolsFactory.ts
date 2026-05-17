@@ -13,7 +13,6 @@ import {
   ListInvoicesTool,
   UpdateInvoiceTool,
 } from "./Accounting/Invoices.js";
-import { ListJournalsTool } from "./Accounting/Journals.js";
 import { ListOrganisationsTool } from "./Accounting/Organisations.js";
 import { ListPaymentsTool } from "./Accounting/Payments.js";
 import { ListQuotesTool } from "./Accounting/Quotes.js";
@@ -31,7 +30,6 @@ export const McpToolsFactory = (function () {
     ListBankTransactionsTool,
     ListContactsTool,
     ListInvoicesTool,
-    ListJournalsTool,
     ListOrganisationsTool,
     ListPaymentsTool,
     ListQuotesTool,
