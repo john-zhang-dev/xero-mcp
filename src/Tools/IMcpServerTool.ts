@@ -1,13 +1,10 @@
 import {
-  CallToolRequestSchema,
-  Result,
+  CallToolRequest,
+  CallToolResult,
   Tool,
 } from "@modelcontextprotocol/sdk/types.js";
-import { z } from "zod";
-
-type Request = z.infer<typeof CallToolRequestSchema>;
 
 export interface IMcpServerTool {
   requestSchema: Tool;
-  requestHandler: (request: Request) => Promise<Result>;
+  requestHandler: (request: CallToolRequest) => Promise<CallToolResult>;
 }
