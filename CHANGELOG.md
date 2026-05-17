@@ -16,6 +16,16 @@
 
 
 
+## [2.0.5](https://github.com/john-zhang-dev/xero-mcp/compare/xero-mcp-v2.0.4...xero-mcp-v2.0.5) (2026-05-17)
+
+
+### Bug Fixes
+
+* **deps-dev:** bump picomatch from 2.3.1 to 2.3.2 ([#55](https://github.com/john-zhang-dev/xero-mcp/issues/55)) ([485a4a2](https://github.com/john-zhang-dev/xero-mcp/commit/485a4a225386060543ead1f82331815eb8bdd260))
+* **deps:** bump @hono/node-server from 1.19.12 to 1.19.14 ([#58](https://github.com/john-zhang-dev/xero-mcp/issues/58)) ([78a3824](https://github.com/john-zhang-dev/xero-mcp/commit/78a3824ccf81108839ab2b91202efdd87f570cea))
+* **deps:** bump ip-address and express-rate-limit ([#56](https://github.com/john-zhang-dev/xero-mcp/issues/56)) ([8c828ea](https://github.com/john-zhang-dev/xero-mcp/commit/8c828ea7cf628e49f0287d0c794a49e97dd5dbb7))
+* **deps:** bump js-yaml from 3.14.1 to 3.14.2 ([#57](https://github.com/john-zhang-dev/xero-mcp/issues/57)) ([da8916c](https://github.com/john-zhang-dev/xero-mcp/commit/da8916cbf23d7456bd7f50494d578f7c1f8f2cd6))
+
 ## [2.0.4](https://github.com/john-zhang-dev/xero-mcp/compare/xero-mcp-v2.0.3...xero-mcp-v2.0.4) (2026-05-17)
 
 
