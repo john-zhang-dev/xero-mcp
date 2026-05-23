@@ -35,6 +35,7 @@ export const AuthenticateTool: IMcpServerTool = {
             XeroClientSession.setActiveTenantId(
               XeroClientSession.xeroClient.tenants[0].tenantId,
             );
+            XeroClientSession.scheduleTokenRefresh(tokenSet);
 
             resolve({
               content: [
