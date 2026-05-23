@@ -16,6 +16,15 @@
 
 
 
+## [2.0.6](https://github.com/john-zhang-dev/xero-mcp/compare/xero-mcp-v2.0.5...xero-mcp-v2.0.6) (2026-05-23)
+
+
+### Bug Fixes
+
+* **deps-dev:** bump ts-jest from 29.4.6 to 29.4.10 ([#65](https://github.com/john-zhang-dev/xero-mcp/issues/65)) ([04b676d](https://github.com/john-zhang-dev/xero-mcp/commit/04b676d1506935a2c6df4d91477efd25713d8ee3))
+* **deps:** bump dotenv from 17.3.1 to 17.4.2 ([#61](https://github.com/john-zhang-dev/xero-mcp/issues/61)) ([add0f76](https://github.com/john-zhang-dev/xero-mcp/commit/add0f766d6317960466684a0bb93285d313b7827))
+* **deps:** bump googleapis/release-please-action from 4.4.1 to 5.0.0 ([#60](https://github.com/john-zhang-dev/xero-mcp/issues/60)) ([b2862ea](https://github.com/john-zhang-dev/xero-mcp/commit/b2862ea02765aa3d6f74addd0cf523b7f50bbc58))
+
 ## [2.0.5](https://github.com/john-zhang-dev/xero-mcp/compare/xero-mcp-v2.0.4...xero-mcp-v2.0.5) (2026-05-17)
 
 
