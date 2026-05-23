@@ -16,6 +16,13 @@
 
 
 
+## [2.1.0](https://github.com/john-zhang-dev/xero-mcp/compare/xero-mcp-v2.0.6...xero-mcp-v2.1.0) (2026-05-23)
+
+
+### Features
+
+* allow redirect port to be inferred from redirect uri ([#68](https://github.com/john-zhang-dev/xero-mcp/issues/68)) ([d250bad](https://github.com/john-zhang-dev/xero-mcp/commit/d250bad099076f6502cab1f8121bf5b0d7afd0ca))
+
 ## [2.0.6](https://github.com/john-zhang-dev/xero-mcp/compare/xero-mcp-v2.0.5...xero-mcp-v2.0.6) (2026-05-23)
 
 
