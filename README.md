@@ -7,7 +7,7 @@ This MCP server allows Clients to interact with [Xero Accounting Software](https
 
 ## Get Started
 
-1. Make sure [node](https://nodejs.org) and [Claude Desktop](https://claude.ai/download) are installed.
+1. Make sure [node](https://nodejs.org) is installed.
 
 2. Create an OAuth 2.0 app in Xero to get a _CLIENT_ID_ and _CLIENT_SECRET_.
 
@@ -22,9 +22,11 @@ This MCP server allows Clients to interact with [Xero Accounting Software](https
    - On the left-hand side of the screen select Configuration
    - Click Generate a secret
 
-3. Modify `claude_desktop_config.json` file:
+3. Configure your MCP client:
 
-   Go to Settings -> Developers -> Local MCP Servers -> Edit Config
+   ### Claude Desktop
+
+   Go to Settings -> Developers -> Local MCP Servers -> Edit Config and add the following to `claude_desktop_config.json`:
 
    ```json
    {
@@ -42,11 +44,23 @@ This MCP server allows Clients to interact with [Xero Accounting Software](https
    }
    ```
 
-4. Restart Claude Desktop, or from Claude Desktop Menu:
+   Restart Claude Desktop, or reload via Developer -> Reload MCP Configuration.
 
-  Developer -> Reload MCP Configuration
+   ### Claude Code
 
-5. When the Client decides to access a Xero tool for the first time, a Xero login page will pop up to ask your consent. Complete the auth flow and manually close the web page (as the Xero page will not auto close in this version)
+   Run the following command to add the MCP server:
+
+   ```bash
+   claude mcp add xero-mcp \
+     -e XERO_CLIENT_ID=YOUR_CLIENT_ID \
+     -e XERO_CLIENT_SECRET=YOUR_CLIENT_SECRET \
+     -e XERO_REDIRECT_URI=http://localhost:5000/callback \
+     -- npx -y xero-mcp@latest
+   ```
+
+   The server will be available in your next Claude Code session. To make it available across all projects, add `--scope user` to the command above.
+
+4. When accessing a Xero tool for the first time, a Xero login page will pop up to ask your consent. Complete the auth flow and manually close the web page (as the Xero page will not auto close in this version)
 
    **Privacy alert: after completing the Xero OAuth2 flow, your Xero data may go through the LLM that you use. If you are doing testing you should authorize to your [Xero Demo Company](https://central.xero.com/s/article/Use-the-demo-company).**
 
