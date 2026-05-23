@@ -4,6 +4,13 @@ import http from "http";
 import open from "open";
 import { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
 
+const REDIRECT_PORT =
+  process.env.PORT ??
+  (process.env.XERO_REDIRECT_URI
+    ? new URL(process.env.XERO_REDIRECT_URI).port
+    : undefined) ??
+  5000;
+
 export const AuthenticateTool: IMcpServerTool = {
   requestSchema: {
     name: "authenticate",
@@ -13,7 +20,7 @@ export const AuthenticateTool: IMcpServerTool = {
   requestHandler: async () => {
     const consentUrl = await XeroClientSession.xeroClient.buildConsentUrl();
     const server = http.createServer();
-    server.listen(process.env.PORT || 5000);
+    server.listen(REDIRECT_PORT);
     const oauth2Process = await open(consentUrl);
 
     const authTask = new Promise<CallToolResult>((resolve, reject) => {
@@ -21,12 +28,12 @@ export const AuthenticateTool: IMcpServerTool = {
         if (req.url && req.url.includes("/callback")) {
           try {
             const tokenSet = await XeroClientSession.xeroClient.apiCallback(
-              req.url
+              req.url,
             );
             XeroClientSession.xeroClient.setTokenSet(tokenSet);
             await XeroClientSession.xeroClient.updateTenants();
             XeroClientSession.setActiveTenantId(
-              XeroClientSession.xeroClient.tenants[0].tenantId
+              XeroClientSession.xeroClient.tenants[0].tenantId,
             );
 
             resolve({
