@@ -1,6 +1,6 @@
 import { XeroClient, TokenSet } from "xero-node";
 import "dotenv/config";
-import { AuditTool } from "./AuditTool.js";
+import { Auditor } from "./Auditor.js";
 
 const client_id = process.env.XERO_CLIENT_ID;
 const client_secret = process.env.XERO_CLIENT_SECRET;
@@ -63,7 +63,7 @@ class XeroApiClient {
 
     this._refreshTimer = setTimeout(async () => {
       if (
-        Date.now() - AuditTool.lastRecordTime() >
+        Date.now() - Auditor.lastRecordTime() >
         XeroApiClient.INACTIVITY_MS
       ) {
         console.error(

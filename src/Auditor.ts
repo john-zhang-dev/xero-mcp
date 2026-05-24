@@ -7,6 +7,9 @@ class AuditLog {
     const time = Date.now();
     console.error(`${name} at ${new Date(time).toISOString()}`);
     this.records.push({ name, time });
+    if (this.records.length > 200) {
+      this.records.shift();
+    }
   }
 
   lastRecordTime(): number {
@@ -16,4 +19,4 @@ class AuditLog {
   }
 }
 
-export const AuditTool = new AuditLog();
+export const Auditor = new AuditLog();

@@ -1,10 +1,10 @@
-import { AuditTool } from "../AuditTool.js";
+import { Auditor } from "../Auditor.js";
 import { IRequestMiddleware } from "./IRequestMiddleware.js";
 
 export const AuditMiddleware: IRequestMiddleware = async (request, next) => {
   const { name } = request.params;
-  AuditTool.record(`${name}_begin`);
+  Auditor.record(`${name}_begin`);
   const result = await next(request);
-  AuditTool.record(`${name}_end`);
+  Auditor.record(`${name}_end`);
   return result;
 };
