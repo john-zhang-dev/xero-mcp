@@ -11,6 +11,7 @@ import {
 import { StdioServerTransport } from "@modelcontextprotocol/sdk/server/stdio.js";
 import { McpToolsFactory } from "./Tools/McpToolsFactory.js";
 import { XeroAuthMiddleware } from "./Middlewares/XeroAuthMiddleware.js";
+import { AuditMiddleware } from "./Middlewares/AuditMiddleware.js";
 import { ErrorMiddleware } from "./Middlewares/ErrorMiddleware.js";
 import { XeroAccountingApiSchema } from "./Resources/xero_accounting.js";
 
@@ -51,21 +52,23 @@ export class XeroMcpServer {
 
     this.mcpServer.setRequestHandler(CallToolRequestSchema, async (request) => {
       return await ErrorMiddleware(request, async (request) => {
-        return await XeroAuthMiddleware(request, async (request) => {
-          const { name } = request.params;
-          const mcpTool = McpToolsFactory.findToolByName(name);
-          if (mcpTool) {
-            return await mcpTool.requestHandler(request);
-          } else {
-            return {
-              content: [
-                {
-                  type: "text",
-                  text: `Error: Tool not found: ${name}`,
-                },
-              ],
-            };
-          }
+        return await AuditMiddleware(request, async (request) => {
+          return await XeroAuthMiddleware(request, async (request) => {
+            const { name } = request.params;
+            const mcpTool = McpToolsFactory.findToolByName(name);
+            if (mcpTool) {
+              return await mcpTool.requestHandler(request);
+            } else {
+              return {
+                content: [
+                  {
+                    type: "text",
+                    text: `Error: Tool not found: ${name}`,
+                  },
+                ],
+              };
+            }
+          });
         });
       });
     });

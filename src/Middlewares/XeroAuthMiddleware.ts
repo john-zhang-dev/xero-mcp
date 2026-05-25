@@ -19,7 +19,7 @@ export const XeroAuthMiddleware: IRequestMiddleware = async (request, next) => {
   }
   const tenantId = XeroClientSession.activeTenantId();
   if (!tenantId) {
-    throw new Error("No tenant selected");
+    throw new Error("No tenant selected. Please authenticate again.");
   }
   return next(request);
 };
