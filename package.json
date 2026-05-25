@@ -32,7 +32,7 @@
     "@modelcontextprotocol/sdk": "^1.29.0",
     "dotenv": "^17.3.1",
     "open": "^11.0.0",
-    "xero-node": "^15.0.0",
+    "xero-node": "^17.0.0",
     "zod": "^3.24.2"
   },
   "devDependencies": {
