@@ -81,7 +81,7 @@ class XeroApiClient {
       } catch (error) {
         console.error("Error refreshing Xero token: ", error);
       }
-    }, delaySeconds * 1000);
+    }, delaySeconds * 1000).unref();
   }
 }
 
