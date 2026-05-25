@@ -16,6 +16,14 @@
 
 
 
+## [2.1.1](https://github.com/john-zhang-dev/xero-mcp/compare/xero-mcp-v2.1.0...xero-mcp-v2.1.1) (2026-05-25)
+
+
+### Bug Fixes
+
+* **deps-dev:** bump jest and @types/jest ([#73](https://github.com/john-zhang-dev/xero-mcp/issues/73)) ([f4fa1a1](https://github.com/john-zhang-dev/xero-mcp/commit/f4fa1a16017faad0ad1b9a678987f999f1a7df33))
+* **deps:** bump qs from 6.15.0 to 6.15.2 ([#70](https://github.com/john-zhang-dev/xero-mcp/issues/70)) ([531a4e3](https://github.com/john-zhang-dev/xero-mcp/commit/531a4e386449812a74cad61ca347b144880c4f3a))
+
 ## [2.1.0](https://github.com/john-zhang-dev/xero-mcp/compare/xero-mcp-v2.0.6...xero-mcp-v2.1.0) (2026-05-23)
 
 
