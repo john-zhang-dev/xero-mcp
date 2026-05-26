@@ -10,8 +10,8 @@ Guidance for AI coding agents and contributors working on `john-zhang-dev/xero-m
 
 ## Verification Commands
 
-- `npm install`
-- `npm test`
+- `npm ci`
+- `npm run test`
 - `npm run build`
 
 ## Safety Rules
