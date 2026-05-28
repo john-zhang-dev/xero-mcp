@@ -11,6 +11,19 @@ const REDIRECT_PORT =
     : undefined) ??
   5000;
 
+const SUCCESS_HTML = `<!doctype html><html><head><meta charset="utf-8"><title>Xero MCP authenticated</title>
+<style>body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;max-width:32rem;margin:4rem auto;padding:0 1rem;color:#111}</style>
+</head><body><h1>Authenticated</h1><p>You can close this tab and return to Claude.</p></body></html>`;
+
+const escapeHtml = (s: string) =>
+  s.replace(/[<>&]/g, (c) =>
+    c === "<" ? "&lt;" : c === ">" ? "&gt;" : "&amp;",
+  );
+
+const ERROR_HTML = (msg: string) =>
+  `<!doctype html><html><head><meta charset="utf-8"><title>Xero MCP error</title></head>
+<body><h1>Authentication failed</h1><pre>${escapeHtml(msg)}</pre></body></html>`;
+
 export const AuthenticateTool: IMcpServerTool = {
   requestSchema: {
     name: "authenticate",
@@ -24,7 +37,7 @@ export const AuthenticateTool: IMcpServerTool = {
     const oauth2Process = await open(consentUrl);
 
     const authTask = new Promise<CallToolResult>((resolve, reject) => {
-      server.on("request", async (req) => {
+      server.on("request", async (req, res) => {
         if (req.url && req.url.includes("/callback")) {
           try {
             const tokenSet = await XeroClientSession.xeroClient.apiCallback(
@@ -36,6 +49,10 @@ export const AuthenticateTool: IMcpServerTool = {
               XeroClientSession.xeroClient.tenants[0].tenantId,
             );
             XeroClientSession.scheduleTokenRefresh(tokenSet);
+            XeroClientSession.persist();
+
+            res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+            res.end(SUCCESS_HTML);
 
             resolve({
               content: [
@@ -46,6 +63,14 @@ export const AuthenticateTool: IMcpServerTool = {
               ],
             });
           } catch (error: any) {
+            try {
+              res.writeHead(500, {
+                "Content-Type": "text/html; charset=utf-8",
+              });
+              res.end(ERROR_HTML(error?.message ?? "unknown error"));
+            } catch {
+              // response may have been closed already
+            }
             reject({
               content: [
                 {
@@ -56,7 +81,11 @@ export const AuthenticateTool: IMcpServerTool = {
             });
           } finally {
             server.close();
-            oauth2Process.kill();
+            try {
+              oauth2Process?.kill();
+            } catch {
+              // open() child may already be detached
+            }
           }
         }
       });
