@@ -4,12 +4,16 @@ import http from "http";
 import open from "open";
 import { CallToolResult } from "@modelcontextprotocol/sdk/types.js";
 
-const REDIRECT_PORT =
-  process.env.PORT ??
-  (process.env.XERO_REDIRECT_URI
-    ? new URL(process.env.XERO_REDIRECT_URI).port
-    : undefined) ??
-  5000;
+if (!process.env.XERO_REDIRECT_URI) {
+  throw Error(
+    "XERO_REDIRECT_URI environment variable not set - please add the required environment variables to your config file.",
+  );
+}
+
+const REDIRECT_URI = new URL(process.env.XERO_REDIRECT_URI);
+
+const REDIRECT_PORT = REDIRECT_URI?.port ?? process.env.PORT ?? 5000;
+const REDIRECT_PATH = REDIRECT_URI?.pathname ?? "/callback";
 
 const AUTH_SUCCESS_HTML = `<!doctype html><html><head><meta charset="utf-8"><title>Xero MCP authenticated</title>
 <style>body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;max-width:32rem;margin:4rem auto;padding:0 1rem;color:#111}</style>
@@ -41,7 +45,7 @@ export const AuthenticateTool: IMcpServerTool = {
 
     const authTask = new Promise<CallToolResult>((resolve, reject) => {
       server.on("request", async (req, res) => {
-        if (req.url && req.url.includes("/callback")) {
+        if (req.url && req.url.includes(REDIRECT_PATH)) {
           try {
             const tokenSet = await XeroClientSession.xeroClient.apiCallback(
               req.url,
