@@ -10,7 +10,7 @@ const scopes =
 
 if (!client_id || !client_secret || !redirectUrl) {
   throw Error(
-    "Environment Variables not all set - please check your .env file in the project root or create one!",
+    "Environment Variables not all set - please add the required environment variables to your config file.",
   );
 }
 
