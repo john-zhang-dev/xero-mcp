@@ -18,6 +18,9 @@ This MCP server allows Clients to interact with [Xero Accounting Software](https
    - Select Web app
    - Provide a valid URL (can be anything valid eg. https://www.myapp.com)
    - Enter redirect URI: `http://localhost:5000/callback`
+
+     > **Note:** The redirect URI can be customized, but it must use `localhost` and include both an explicit port and a path (e.g. `http://localhost:5050/my-path`). Set the same value as `XERO_REDIRECT_URI` in your MCP client config below.
+
    - Tick to Accept the Terms & Conditions and click Create app
    - On the left-hand side of the screen select Configuration
    - Click Generate a secret

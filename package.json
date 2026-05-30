@@ -1,6 +1,6 @@
 {
   "name": "xero-mcp",
-  "version": "2.2.0",
+  "version": "2.2.1",
   "description": "A Model Context Protocol server allows Clients to interact with Xero",
   "author": "Jianyang Zhang",
   "type": "module",
@@ -32,8 +32,8 @@
     "@modelcontextprotocol/sdk": "^1.29.0",
     "dotenv": "^17.3.1",
     "open": "^11.0.0",
-    "xero-node": "^15.0.0",
-    "zod": "^3.24.2"
+    "xero-node": "^17.0.0",
+    "zod": "^4.4.3"
   },
   "devDependencies": {
     "@types/jest": "^30.0.0",
