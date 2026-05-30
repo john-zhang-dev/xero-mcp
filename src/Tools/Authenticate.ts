@@ -81,7 +81,11 @@ export const AuthenticateTool: IMcpServerTool = {
                 error,
               );
             }
-            reject(`Error authenticating user: ${error?.message}`);
+            reject(
+              new Error(
+                `Error authenticating user: ${error?.message ?? String(error)}`,
+              ),
+            );
           } finally {
             server.close();
             try {
