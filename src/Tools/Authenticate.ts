@@ -11,6 +11,22 @@ const REDIRECT_PORT =
     : undefined) ??
   5000;
 
+const AUTH_SUCCESS_HTML = `<!doctype html><html><head><meta charset="utf-8"><title>Xero MCP authenticated</title>
+<style>body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;max-width:32rem;margin:4rem auto;padding:0 1rem;color:#111}</style>
+</head><body><h1>Xero MCP Authenticated</h1><p style="font-size:1.2rem">You can close this tab and return to your agent.</p></body></html>`;
+
+const HTML_ESCAPES: Record<string, string> = {
+  "<": "&lt;",
+  ">": "&gt;",
+  "&": "&amp;",
+};
+
+const escapeHtml = (s: string) => s.replace(/[<>&]/g, (c) => HTML_ESCAPES[c]);
+
+const AUTH_ERROR_HTML = (msg: string) =>
+  `<!doctype html><html><head><meta charset="utf-8"><title>Xero MCP error</title></head>
+<body><h1>Authentication failed</h1><pre>${escapeHtml(msg)}</pre></body></html>`;
+
 export const AuthenticateTool: IMcpServerTool = {
   requestSchema: {
     name: "authenticate",
@@ -24,7 +40,7 @@ export const AuthenticateTool: IMcpServerTool = {
     const oauth2Process = await open(consentUrl);
 
     const authTask = new Promise<CallToolResult>((resolve, reject) => {
-      server.on("request", async (req) => {
+      server.on("request", async (req, res) => {
         if (req.url && req.url.includes("/callback")) {
           try {
             const tokenSet = await XeroClientSession.xeroClient.apiCallback(
@@ -37,6 +53,9 @@ export const AuthenticateTool: IMcpServerTool = {
             );
             XeroClientSession.scheduleTokenRefresh(tokenSet);
 
+            res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
+            res.end(AUTH_SUCCESS_HTML);
+
             resolve({
               content: [
                 {
@@ -46,17 +65,33 @@ export const AuthenticateTool: IMcpServerTool = {
               ],
             });
           } catch (error: any) {
+            try {
+              res.writeHead(500, {
+                "Content-Type": "text/html; charset=utf-8",
+              });
+              res.end(AUTH_ERROR_HTML(error?.message ?? "unknown error"));
+            } catch (error) {
+              // response may have been closed already
+              console.error(
+                "Error sending authentication error response:",
+                error,
+              );
+            }
             reject({
               content: [
                 {
                   type: "text",
-                  text: `Error authenticating user: ${error.message}`,
+                  text: `Error authenticating user: ${error?.message}`,
                 },
               ],
             });
           } finally {
             server.close();
-            oauth2Process.kill();
+            try {
+              oauth2Process?.kill();
+            } catch {
+              // open() child may already be detached
+            }
           }
         }
       });
