@@ -31,19 +31,6 @@ const AUTH_ERROR_HTML = (msg: string) =>
   `<!doctype html><html><head><meta charset="utf-8"><title>Xero MCP error</title></head>
 <body><h1>Authentication failed</h1><pre>${escapeHtml(msg)}</pre></body></html>`;
 
-const SUCCESS_HTML = `<!doctype html><html><head><meta charset="utf-8"><title>Xero MCP authenticated</title>
-<style>body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;max-width:32rem;margin:4rem auto;padding:0 1rem;color:#111}</style>
-</head><body><h1>Authenticated</h1><p>You can close this tab and return to Claude.</p></body></html>`;
-
-const escapeHtml = (s: string) =>
-  s.replace(/[<>&]/g, (c) =>
-    c === "<" ? "&lt;" : c === ">" ? "&gt;" : "&amp;",
-  );
-
-const ERROR_HTML = (msg: string) =>
-  `<!doctype html><html><head><meta charset="utf-8"><title>Xero MCP error</title></head>
-<body><h1>Authentication failed</h1><pre>${escapeHtml(msg)}</pre></body></html>`;
-
 export const AuthenticateTool: IMcpServerTool = {
   requestSchema: {
     name: "authenticate",
@@ -70,9 +57,6 @@ export const AuthenticateTool: IMcpServerTool = {
             );
             XeroClientSession.scheduleTokenRefresh(tokenSet);
             XeroClientSession.persist();
-
-            res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
-            res.end(SUCCESS_HTML);
 
             res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
             res.end(AUTH_SUCCESS_HTML);
