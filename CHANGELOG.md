@@ -16,6 +16,18 @@
 
 
 
+## [2.2.1](https://github.com/john-zhang-dev/xero-mcp/compare/xero-mcp-v2.2.0...xero-mcp-v2.2.1) (2026-05-30)
+
+
+### Bug Fixes
+
+* auth browser tab hang after oauth flow ended ([#84](https://github.com/john-zhang-dev/xero-mcp/issues/84)) ([528bade](https://github.com/john-zhang-dev/xero-mcp/commit/528bade0a9d5647d751ce5c37d24f8ac29408e0e))
+* **deps-dev:** bump @types/node from 25.5.0 to 25.9.1 ([#77](https://github.com/john-zhang-dev/xero-mcp/issues/77)) ([3277267](https://github.com/john-zhang-dev/xero-mcp/commit/3277267eee76818260b2cc522dac4694a4e62ab3))
+* **deps-dev:** bump ts-jest from 29.4.10 to 29.4.11 ([#81](https://github.com/john-zhang-dev/xero-mcp/issues/81)) ([18b6ea6](https://github.com/john-zhang-dev/xero-mcp/commit/18b6ea64bd0a4c1032d49eb09cfed71fc48e4c37))
+* **deps-dev:** bump tsx from 4.19.3 to 4.22.3 ([#80](https://github.com/john-zhang-dev/xero-mcp/issues/80)) ([3f83c54](https://github.com/john-zhang-dev/xero-mcp/commit/3f83c5407758c7f483ddfd7bc29420d0cfbfea14))
+* **deps:** bump xero-node from 15.0.0 to 17.0.0 ([#74](https://github.com/john-zhang-dev/xero-mcp/issues/74)) ([c9b1acb](https://github.com/john-zhang-dev/xero-mcp/commit/c9b1acb2687846052009b6fe86dc9118d4a42a78))
+* **deps:** bump zod from 3.24.2 to 4.4.3 ([#83](https://github.com/john-zhang-dev/xero-mcp/issues/83)) ([ee384d3](https://github.com/john-zhang-dev/xero-mcp/commit/ee384d393332d8257e13cb891c825873370e04d9))
+
 ## [2.2.0](https://github.com/john-zhang-dev/xero-mcp/compare/xero-mcp-v2.1.0...xero-mcp-v2.2.0) (2026-05-25)
 
 
