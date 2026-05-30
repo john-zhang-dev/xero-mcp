@@ -5,13 +5,7 @@
       ".": {
         "release-type": "node",
         "package-name": "xero-mcp",
-        "include-v-in-tag": true,
-        "changelog-sections": [
-          {"type": "feat", "section": "Features"},
-          {"type": "fix", "scope": "deps", "section": "Dependency Updates"},
-          {"type": "fix", "section": "Bug Fixes"},
-          {"type": "perf", "section": "Performance Improvements"}
-        ]
+        "include-v-in-tag": true
       }
     }
   }
