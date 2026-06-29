@@ -1,6 +1,7 @@
 import { XeroClient, TokenSet } from "xero-node";
 import "dotenv/config";
 import { Auditor } from "./Auditor.js";
+import { TokenStore } from "./TokenStore.js";
 
 const client_id = process.env.XERO_CLIENT_ID;
 const client_secret = process.env.XERO_CLIENT_SECRET;
@@ -47,6 +48,57 @@ class XeroApiClient {
 
   setActiveTenantId(tenantId: string) {
     this._activeTenantId = tenantId;
+    this.persist();
+  }
+
+  persist(): void {
+    if (!TokenStore.isEnabled()) return;
+    const tokenSet = this.xeroClient.readTokenSet();
+    if (!tokenSet) return;
+    TokenStore.save({
+      tokenSet,
+      activeTenantId: this._activeTenantId,
+    });
+  }
+
+  async bootstrapFromDisk(): Promise<void> {
+    if (!TokenStore.isEnabled()) return;
+    const persisted = TokenStore.load();
+    if (!persisted) return;
+
+    try {
+      this.xeroClient.setTokenSet(persisted.tokenSet);
+
+      const now = Math.floor(Date.now() / 1000);
+      const expired =
+        !persisted.tokenSet.expires_at || persisted.tokenSet.expires_at <= now;
+
+      let active = persisted.tokenSet;
+      if (expired) {
+        console.error("Persisted Xero access token expired, refreshing...");
+        active = await this.xeroClient.refreshToken();
+        this.xeroClient.setTokenSet(active);
+      }
+
+      await this.xeroClient.updateTenants();
+      const wantedTenantId = persisted.activeTenantId;
+      const match = wantedTenantId
+        ? this.xeroClient.tenants.find((t: any) => t.tenantId === wantedTenantId)
+        : undefined;
+      this._activeTenantId =
+        match?.tenantId ?? this.xeroClient.tenants[0]?.tenantId;
+
+      this.scheduleTokenRefresh(active);
+      this.persist();
+      console.error(
+        `Xero session restored from disk (tenant=${this._activeTenantId}).`,
+      );
+    } catch (err) {
+      console.error(
+        "Failed to restore Xero session from disk; re-auth required:",
+        (err as Error).message,
+      );
+    }
   }
 
   scheduleTokenRefresh(tokenSet: TokenSet): void {
@@ -76,6 +128,7 @@ class XeroApiClient {
       try {
         const newTokenSet = await this.xeroClient.refreshToken();
         this.xeroClient.setTokenSet(newTokenSet);
+        this.persist();
         console.error("Xero token refreshed successfully");
         this.scheduleTokenRefresh(newTokenSet);
       } catch (error) {
