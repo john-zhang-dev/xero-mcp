@@ -11,6 +11,12 @@ updates:
       prefix-development: "chore(deps-dev)"
     cooldown:
       default-days: 7
+    groups:
+      typescript:
+        patterns:
+          - 'typescript'
+          - 'ts-jest'
+          - 'ts-node'
 
   - package-ecosystem: github-actions
     directory: /
