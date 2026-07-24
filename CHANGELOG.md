@@ -16,6 +16,19 @@
 
 
 
+## [2.2.2](https://github.com/john-zhang-dev/xero-mcp/compare/xero-mcp-v2.2.1...xero-mcp-v2.2.2) (2026-07-24)
+
+
+### Bug Fixes
+
+* **deps:** bump fast-uri from 3.1.2 to 3.1.4 ([#111](https://github.com/john-zhang-dev/xero-mcp/issues/111)) ([96abf3d](https://github.com/john-zhang-dev/xero-mcp/commit/96abf3d0c43570264e3aa067f40fe0c51628f60c))
+* **deps:** bump form-data from 4.0.5 to 4.0.6 in the npm_and_yarn group across 1 directory ([#95](https://github.com/john-zhang-dev/xero-mcp/issues/95)) ([efca164](https://github.com/john-zhang-dev/xero-mcp/commit/efca16498560921bc246471b099b34a817ce3b5c))
+* **deps:** bump hono from 4.12.19 to 4.12.23 in the npm_and_yarn group across 1 directory ([#87](https://github.com/john-zhang-dev/xero-mcp/issues/87)) ([3137ccb](https://github.com/john-zhang-dev/xero-mcp/commit/3137ccb17ea4004a654b1c6ca6c9f84e57ae6502))
+* **deps:** bump hono from 4.12.23 to 4.12.26 in the npm_and_yarn group across 1 directory ([#94](https://github.com/john-zhang-dev/xero-mcp/issues/94)) ([61cd2af](https://github.com/john-zhang-dev/xero-mcp/commit/61cd2af4394b0d207b4dee01ebaee2ba666147b2))
+* **deps:** bump hono from 4.12.26 to 4.12.31 ([#110](https://github.com/john-zhang-dev/xero-mcp/issues/110)) ([ec09504](https://github.com/john-zhang-dev/xero-mcp/commit/ec095047f4c49751fb5ab6106c910025dd243c8c))
+* **deps:** bump the npm_and_yarn group across 1 directory with 2 updates ([#104](https://github.com/john-zhang-dev/xero-mcp/issues/104)) ([e658825](https://github.com/john-zhang-dev/xero-mcp/commit/e658825a9b80cf45f6b07a3147583c74f721d679))
+* **deps:** bump xero-node from 17.0.0 to 18.0.0 ([#91](https://github.com/john-zhang-dev/xero-mcp/issues/91)) ([7362969](https://github.com/john-zhang-dev/xero-mcp/commit/7362969ff983a0d303719de984965e3731e1d9ac))
+
 ## [2.2.1](https://github.com/john-zhang-dev/xero-mcp/compare/xero-mcp-v2.2.0...xero-mcp-v2.2.1) (2026-05-30)
 
 
