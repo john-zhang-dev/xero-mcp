@@ -16,6 +16,24 @@
 
 
 
+## [2.2.3](https://github.com/john-zhang-dev/xero-mcp/compare/xero-mcp-v2.2.2...xero-mcp-v2.2.3) (2026-09-10)
+
+
+### Bug Fixes
+
+* **deps:** bump @modelcontextprotocol/sdk from 1.29.0 to 1.30.0 ([#118](https://github.com/john-zhang-dev/xero-mcp/issues/118)) ([0070cad](https://github.com/john-zhang-dev/xero-mcp/commit/0070cad742a838f8f608fb2bea8ec0ea6a09d948))
+* **deps:** bump brace-expansion ([#116](https://github.com/john-zhang-dev/xero-mcp/issues/116)) ([a467caf](https://github.com/john-zhang-dev/xero-mcp/commit/a467caf3c98b24c048be38389e0658c1b78c204d))
+* **deps:** bump fast-uri from 3.1.4 to 3.1.5 ([#120](https://github.com/john-zhang-dev/xero-mcp/issues/120)) ([baebc0f](https://github.com/john-zhang-dev/xero-mcp/commit/baebc0f2699deed7d56c4d65ce7badc6ac8a6c04))
+* **deps:** bump fast-uri from 3.1.5 to 3.1.7 ([#127](https://github.com/john-zhang-dev/xero-mcp/issues/127)) ([cd02329](https://github.com/john-zhang-dev/xero-mcp/commit/cd0232966e796d7cff2c5a29cc73efc18fdd9735))
+* **deps:** bump hono from 4.12.31 to 4.13.1 ([#121](https://github.com/john-zhang-dev/xero-mcp/issues/121)) ([73a01d1](https://github.com/john-zhang-dev/xero-mcp/commit/73a01d11a24e8f09e560ce85ee0e523edff1b6b3))
+* **deps:** bump hono from 4.13.1 to 4.13.7 ([#135](https://github.com/john-zhang-dev/xero-mcp/issues/135)) ([df0a6b4](https://github.com/john-zhang-dev/xero-mcp/commit/df0a6b4d923a7a731a74cb8c66c4da228c7cb184))
+* **deps:** bump ip-address from 10.2.0 to 10.4.0 ([#117](https://github.com/john-zhang-dev/xero-mcp/issues/117)) ([71169da](https://github.com/john-zhang-dev/xero-mcp/commit/71169da39e7166f5649370399d7e0d548543ad9c))
+* **deps:** bump js-yaml from 3.14.2 to 3.15.2 ([#134](https://github.com/john-zhang-dev/xero-mcp/issues/134)) ([38a1686](https://github.com/john-zhang-dev/xero-mcp/commit/38a1686cab949c601eb576cedb99a474e5119f5e))
+* **deps:** bump qs from 6.15.2 to 6.16.0 ([#132](https://github.com/john-zhang-dev/xero-mcp/issues/132)) ([76be8d7](https://github.com/john-zhang-dev/xero-mcp/commit/76be8d7f56bd4519d38abd5fd18305f20a9026b4))
+* **deps:** bump xero-node from 18.0.0 to 19.0.0 ([#109](https://github.com/john-zhang-dev/xero-mcp/issues/109)) ([1d11672](https://github.com/john-zhang-dev/xero-mcp/commit/1d11672ce1682badb9b856424cc5fc6fa55e909b))
+* **deps:** bump xero-node from 19.0.0 to 19.1.0 ([#125](https://github.com/john-zhang-dev/xero-mcp/issues/125)) ([d9b3c15](https://github.com/john-zhang-dev/xero-mcp/commit/d9b3c15c4b3b7c337e20a23826c782a3d7d01054))
+* **deps:** bump zod from 4.4.3 to 4.5.4 ([#130](https://github.com/john-zhang-dev/xero-mcp/issues/130)) ([97e0c9e](https://github.com/john-zhang-dev/xero-mcp/commit/97e0c9e0b72ce56edf66b4dd0aa41a2f216e95c5))
+
 ## [2.2.2](https://github.com/john-zhang-dev/xero-mcp/compare/xero-mcp-v2.2.1...xero-mcp-v2.2.2) (2026-07-26)
 
 
