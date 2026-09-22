@@ -16,7 +16,11 @@ const MAX_LENGTH = 500;
 
 export function describeError(error: unknown): string {
   if (error instanceof Error) return error.message;
-  if (typeof error === "string") return error.slice(0, MAX_LENGTH);
+  if (typeof error === "string") {
+    // xero-node can reject with a JSON-serialised { response, body } object.
+    const parsed = parseJsonObject(error);
+    return parsed ? describeError(parsed) : error.slice(0, MAX_LENGTH);
+  }
   if (!error || typeof error !== "object") return String(error);
 
   const { response, body } = error as {
@@ -37,6 +41,15 @@ export function describeError(error: unknown): string {
   if (messages.length === 0) collectMessages(body, messages, 0);
   if (messages.length === 0) return status;
   return `${status}: ${messages.join("; ")}`.slice(0, MAX_LENGTH);
+}
+
+function parseJsonObject(text: string): object | undefined {
+  try {
+    const value: unknown = JSON.parse(text);
+    return value && typeof value === "object" ? value : undefined;
+  } catch {
+    return undefined;
+  }
 }
 
 function collectMessages(value: unknown, out: string[], depth: number): void {

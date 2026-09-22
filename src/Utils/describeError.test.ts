@@ -51,6 +51,21 @@ describe("describeError", () => {
     expect(text).toBe("Xero API error");
   });
 
+  it("summarises a JSON string rejection without the bearer token", () => {
+    const text = describeError(
+      JSON.stringify({
+        response: {
+          statusCode: 400,
+          request: { headers: { authorization: BEARER } },
+          body: { Message: "A validation exception occurred" },
+        },
+        body: {},
+      })
+    );
+    expect(text).toBe("Xero API 400: A validation exception occurred");
+    expect(text).not.toContain(BEARER);
+  });
+
   it("passes Error messages and strings through", () => {
     expect(describeError(new Error("boom"))).toBe("boom");
     expect(describeError("plain string")).toBe("plain string");
