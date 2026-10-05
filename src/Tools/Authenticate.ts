@@ -56,6 +56,7 @@ export const AuthenticateTool: IMcpServerTool = {
               XeroClientSession.xeroClient.tenants[0].tenantId,
             );
             XeroClientSession.scheduleTokenRefresh(tokenSet);
+            XeroClientSession.persist();
 
             res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
             res.end(AUTH_SUCCESS_HTML);
