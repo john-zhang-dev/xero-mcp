@@ -16,6 +16,15 @@
 
 
 
+## [2.2.4](https://github.com/john-zhang-dev/xero-mcp/compare/xero-mcp-v2.2.3...xero-mcp-v2.2.4) (2026-11-15)
+
+
+### Bug Fixes
+
+* **deps:** bump @hono/node-server from 2.1.5 to 2.1.8 ([#164](https://github.com/john-zhang-dev/xero-mcp/issues/164)) ([f0aee0a](https://github.com/john-zhang-dev/xero-mcp/commit/f0aee0adf4590e38764c6befe529c6ffb99c8bad))
+* **deps:** bump @modelcontextprotocol/sdk from 1.32.1 to 1.32.2 ([#166](https://github.com/john-zhang-dev/xero-mcp/issues/166)) ([40be515](https://github.com/john-zhang-dev/xero-mcp/commit/40be51588bff7c6119a716d5d8dab4f356d95401))
+* **deps:** bump hono from 4.13.13 to 4.13.18 ([#169](https://github.com/john-zhang-dev/xero-mcp/issues/169)) ([e47f840](https://github.com/john-zhang-dev/xero-mcp/commit/e47f8406374bd99db65a461dcb6402572faa7540))
+
 ## [2.2.3](https://github.com/john-zhang-dev/xero-mcp/compare/xero-mcp-v2.2.2...xero-mcp-v2.2.3) (2026-11-01)
 
 
